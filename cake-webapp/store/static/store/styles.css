@@ -1,0 +1,60 @@
+/*Fonts*/
+
+@font-face {
+	font-family: Caslon;
+	font-style: normal;
+	font-weight: normal;
+	src: url(fonts/ACaslonPro-Regular.otf) format('opentype');
+}
+
+@font-face {
+	font-family: Cheltenham;
+	font-style: normal;
+	font-weight: normal;
+	src: url(fonts/CheltenhamBookRegular.otf) format('opentype');
+}
+
+body {
+	font-family: Caslon !important;
+	color: #ddd;
+	background: url(images/philosophia_christi.jpg) fixed;
+}
+
+.jumbotron {
+	font-family: Cheltenham;
+	background: url(images/cartographer.png) fixed;
+	margin: 0;
+	padding: 25px 100px 0 100px;
+}
+
+.sec {
+	margin-bottom: 30px
+}
+
+a {
+	color: #ddd;
+}
+
+.navbar {
+	margin: 0 30px 30px 30px;
+	border-bottom: 1px solid rgb(131, 24, 24);
+}
+
+.list-group-item {
+	background-color: transparent;
+}
+
+li {
+	text-align: justify;
+}
+
+.navbar-dark .navbar-brand {
+	color: #ddd;
+}
+
+
+header {
+	/* position:sticky; */
+	top: 0;
+	background: url(images/cartographer.png) fixed;
+}
