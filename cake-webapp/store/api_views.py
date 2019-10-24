@@ -1,18 +1,17 @@
 from rest_framework.exceptions import ValidationError
-from rest_framework.generics import ListAPIView, CreateAPIView, RetrieveUpdateDestroyAPIView, GenericAPIView
+from rest_framework.generics import ListAPIView, CreateAPIView, \
+    RetrieveUpdateDestroyAPIView, GenericAPIView
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.filters import SearchFilter
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.response import Response
 
-from store.serializers import ProductSerializer
+from store.serializers import ProductSerializer, ProductStatSerializer
 from store.models import Product
-
 
 class ProductsPagination(LimitOffsetPagination):
     default_limit = 10
     max_limit = 100
-
 
 class ProductList(ListAPIView):
     queryset = Product.objects.all()
@@ -36,7 +35,6 @@ class ProductList(ListAPIView):
             )
         return queryset
 
-
 class ProductCreate(CreateAPIView):
     serializer_class = ProductSerializer
 
@@ -48,7 +46,6 @@ class ProductCreate(CreateAPIView):
         except ValueError:
             raise ValidationError({'price': 'A valid number is required'})
         return super().create(request, *args, **kwargs)
-
 
 class ProductRetrieveUpdateDestroy(RetrieveUpdateDestroyAPIView):
     queryset = Product.objects.all()
@@ -74,3 +71,19 @@ class ProductRetrieveUpdateDestroy(RetrieveUpdateDestroyAPIView):
                 'price': product['price'],
             })
         return response
+
+class ProductStats(GenericAPIView):
+    lookup_field = 'id'
+    serializer_class = ProductStatSerializer
+    queryset = Product.objects.all()
+
+    def get(self, request, format=None, id=None):
+        obj = self.get_object()
+        serializer = ProductStatSerializer({
+            'stats': {
+                '2019-01-01': [5, 10, 15],
+                '2019-01-02': [20, 1, 1],
+            }
+        })
+        return Response(serializer.data)
+        

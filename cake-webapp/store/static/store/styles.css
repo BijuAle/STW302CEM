@@ -14,6 +14,14 @@
 	src: url(fonts/CheltenhamBookRegular.otf) format('opentype');
 }
 
+@font-face {
+	font-family: AmaticSC-Regular;
+	font-style: normal;
+	font-weight: normal;
+	src: url(fonts/AmaticSC-Regular.otf) format('opentype');
+}
+
+
 body {
 	font-family: Caslon !important;
 	color: #ddd;
@@ -21,7 +29,7 @@ body {
 }
 
 .jumbotron {
-	font-family: Cheltenham;
+	font-family: AmaticSC-Regular !important;
 	background: url(images/cartographer.png) fixed;
 	margin: 0;
 	padding: 25px 100px 0 100px;
@@ -52,9 +60,14 @@ li {
 	color: #ddd;
 }
 
-
 header {
 	/* position:sticky; */
 	top: 0;
 	background: url(images/cartographer.png) fixed;
+}
+
+.hover-effect:hover {
+	border: 2px solid yellow;
+	background-color: red;
+	opacity: 0.5;
 }

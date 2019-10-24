@@ -2,7 +2,7 @@ from django.contrib.auth import login, authenticate
 from django.contrib.auth.forms import UserCreationForm
 from django.shortcuts import render, redirect
 
-from store.models import Product
+from store.models import Product,ShoppingCart
 
 
 def index(request):
@@ -32,3 +32,14 @@ def signup(request):
     else:
         form = UserCreationForm()
     return render(request, 'store/signup.html', {'form': form})
+
+
+def cart(request):
+    context = {
+        'items': [],
+        'subtotal': 1.0,
+        'tax_rate': int(ShoppingCart.TAX_RATE * 100.0),
+        'tax_total': 2.0,
+        'total': 3.0,
+    }
+    return render(request, 'store/cart.html', context)

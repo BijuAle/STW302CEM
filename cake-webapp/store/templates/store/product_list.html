@@ -2,21 +2,28 @@
 {% block title %}Products{% endblock %}
 {% block content %}
 
-<div class="product-list">
+<div class="product-list row col-md-12">
   {% for product in products %}
-  <div class="product">
+  <div class="product col-md-3">
     <div>
       <h3>{{ product.name }}</h3>
       {% if product.photo %}
       <p>
         <a href="{% url 'show-product' product.id %}">
-          <img width="200" src="{{ MEDIA_URL }}{{ product.photo }}" />
+          <img class="img-rounded hover-effect" width="220" src="{{ MEDIA_URL }}{{ product.photo }}" />
         </a>
       </p>
       {% endif %}
-      <p>
-        <a href="{% url 'show-product' product.id %}">View</a>
+      {% if product.is_on_sale %}
+      <p class="price sale-price">
+        Regular Price:<del>${{ product.get_price|floatformat:2 }}</del> <br />
+        <strong>SALE: ${{ product.current_price|floatformat:2 }}</strong>
       </p>
+      {% else %}
+      <p class="price price-regular">
+        <strong>Price: ${{ product.get_price|floatformat:2 }}</strong>
+      </p>
+      {% endif %}
     </div>
   </div>
   {% endfor %}
