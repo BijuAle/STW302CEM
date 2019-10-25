@@ -33,7 +33,7 @@ class ProductList(ListAPIView):
                 sale_start__lte=now,
                 sale_end__gte=now,
             )
-        return queryset
+        return reversed(list(queryset))
 
 class ProductCreate(CreateAPIView):
     serializer_class = ProductSerializer

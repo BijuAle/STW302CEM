@@ -4,15 +4,14 @@ from django.db import models
 
 
 class Product(models.Model):
-    DISCOUNT_RATE = models.FloatField(null=True, blank=True, default=0)
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200)
     description = models.TextField()
     price = models.FloatField()
+    DISCOUNT_RATE = models.FloatField(null=False, blank=True, default=0)
     sale_start = models.DateTimeField(blank=True, null=True, default=None)
     sale_end = models.DateTimeField(blank=True, null=True, default=None)
-    photo = models.ImageField(blank=True, null=True,
-                              default=None, upload_to='products')
+    photo = models.ImageField(blank=True, null=True,default=None, upload_to='products')
 
     def is_on_sale(self):
         now = timezone.now()
