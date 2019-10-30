@@ -14,8 +14,8 @@ admin.site.site_title = 'HTML title from adminsitration'  # default: "Django sit
 
 
 urlpatterns = [
-    #User signup
-    url(r'^signup/$', store.views.signup, name='signup'),
+    #User Registration
+    path(r'register', store.views.register, name='register'),
         
     #Retrieve all cakes
     path('api/v1/products/', store.api_views.ProductList.as_view()),

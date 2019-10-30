@@ -23,19 +23,16 @@
 
 body {
 	font-family: Caslon !important;
-	color: #ddd;
+	color: #c4acac;
 	background: url(images/prism.png) fixed;
 }
 
 .jumbotron {
 	font-family: AmaticSC-Regular !important;
-	background: url(images/cork-board.png) fixed;
-	margin: 0;
+	background: url(images/black_thread.png) fixed;
+	margin-bottom: 20px;
 	padding: 25px 100px 0 100px;
-}
-
-a {
-	color: #ddd;
+	color: #c4acac;
 }
 
 .navbar {
@@ -52,7 +49,7 @@ li {
 }
 
 .navbar-dark .navbar-brand {
-	color: #ddd;
+	color: #c4acac;
 }
 
 header {

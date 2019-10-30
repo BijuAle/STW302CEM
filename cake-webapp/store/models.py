@@ -2,13 +2,20 @@
 from django.utils import timezone
 from django.db import models
 
+OCCASIONS = (
+    ('B', 'Birthday'),
+    ('A', 'Anniversary'),
+    ('W', 'Wedding'),
+    ('G', 'General')
+)
 
 class Product(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200)
     description = models.TextField()
+    occasion = models.CharField(choices=OCCASIONS, max_length=2, default='G')
     price = models.FloatField()
-    DISCOUNT_RATE = models.FloatField(null=False, blank=True, default=0)
+    discount_rate = models.FloatField(null=False, blank=True, default=0)
     sale_start = models.DateTimeField(blank=True, null=True, default=None)
     sale_end = models.DateTimeField(blank=True, null=True, default=None)
     photo = models.ImageField(blank=True, null=True,default=None, upload_to='products')
@@ -29,7 +36,7 @@ class Product(models.Model):
 
     def current_price(self):
         if self.is_on_sale():
-            discounted_price = self.price * (1 - self.DISCOUNT_RATE)
+            discounted_price = self.price * (1 - self.discount_rate)
             return round(discounted_price, 2)
         return self.get_rounded_price()
 

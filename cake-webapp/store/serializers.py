@@ -10,7 +10,7 @@ class CartItemSerializer(serializers.ModelSerializer):
         fields = ('product', 'quantity')
 
 class ProductSerializer(serializers.ModelSerializer):
-    DISCOUNT_RATE = serializers.FloatField(read_only=True)
+    discount_rate = serializers.FloatField(read_only=True)
     is_on_sale = serializers.BooleanField(read_only=True)
     current_price = serializers.FloatField(read_only=True)
     description = serializers.CharField(min_length=2, max_length=10000)
@@ -40,7 +40,7 @@ class ProductSerializer(serializers.ModelSerializer):
         fields = (
             'id', 'name', 'description', 'price', 'sale_start', 'sale_end',
             'is_on_sale', 'current_price', 'cart_items',
-            'photo', 'warranty', 'DISCOUNT_RATE',
+            'photo', 'warranty', 'discount_rate',
         )
 
     def get_cart_items(self, instance):

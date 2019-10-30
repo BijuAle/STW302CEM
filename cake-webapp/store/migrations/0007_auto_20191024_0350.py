@@ -12,7 +12,7 @@ class Migration(migrations.Migration):
     operations = [
         migrations.AlterField(
             model_name='product',
-            name='DISCOUNT_RATE',
+            name='discount_rate',
             field=models.FloatField(blank=True, default=0),
         ),
     ]
