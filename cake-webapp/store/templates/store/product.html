@@ -7,7 +7,7 @@
     <h2>{{ product.name }}</h2>
     {% if product.photo %}
     <div>
-      <a href="{% url 'show-product' product.id %}">
+      <a href="{% url 'showCake' product.id %}">
         <img width="200" src="{{ MEDIA_URL }}{{ product.photo }}" />
       </a>
     </div>

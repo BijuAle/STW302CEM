@@ -17,20 +17,23 @@ admin.site.site_title = 'HTML title from adminsitration'
 
 urlpatterns = [
 
-    # Show index page
+    # Show index page / login
     path(r'', store.views.index, name='index'),
+
+    #logout
+    path(r'logout', store.views.logout, name='logout'),
 
     # Show page: User Registration
     path(r'register', store.views.register, name='register'),
 
     # Show cart
-    path('cart/', store.views.cart, name='shopping-cart'),
+    path(r'cart/', store.views.cart, name='shopping-cart'),
 
     # Show all cakes
-    path('', store.views.index, name='list-products'),
+    path(r'list', store.views.listAllCakes, name='listAllCakes'),
 
     # Show individual cake
-    path('products/<int:id>/', store.views.show, name='show-product'),
+    path('products/<int:id>/', store.views.showCake, name='showCake'),
 
     # Stats
     path('api/v1/products/<int:id>/stats', store.api_views.ProductStats.as_view()),

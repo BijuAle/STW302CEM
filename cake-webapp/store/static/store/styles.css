@@ -66,3 +66,7 @@ header {
 	background-color: red;
 	opacity: 0.5;
 }
+
+.username{
+	color:black !important;
+}

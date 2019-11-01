@@ -4,26 +4,30 @@
 
 <div class="product-list row col-md-12">
   {% for product in products %}
-  <div class="product col-md-3">
-    <div>
-      <h4>{{ product.name }}</h4>
-      {% if product.photo %}
-      <p>
-        <a href="{% url 'show-product' product.id %}"><img class="img-rounded hover-effect" width="210" src="{{ MEDIA_URL }}{{ product.photo }}" />
-        </a>
-      </p>
-      {% endif %}
+  <div class="card bg-transparent col-md-3">
+    <h4 class="card-header">{{ product.name }}</h4>
+    {% if product.photo %}
+    <a href="{% url 'showCake' product.id %}">
+      <img class="img-rounded hover-effect" width="210" src="{{ MEDIA_URL }}{{ product.photo }}" />
+    </a>
+    {% endif %}
+    <div class="card-body">
       {% if product.is_on_sale %}
       <p>
-        <span class="badge badge-pill badge-danger"><iclass="fa fa-tags"></i>&nbsp<del>${{ product.get_price|floatformat:2 }}</del></span><br />
+        <span class="badge badge-pill badge-danger">
+          <iclass="fa fa-tags"></i>&nbsp<del>${{ product.get_price|floatformat:2 }}</del>
+        </span><br />
         <span class="badge badge-pill badge-warning">SALE: ${{ product.current_price|floatformat:2 }}</span>
       </p>
       {% else %}
       <p>
-        <span class="badge badge-pill badge-danger"><i class="fa fa-tags"></i>&nbsp${{ product.get_price|floatformat:2 }}</span>
+        <span class="badge badge-pill badge-danger"><i
+            class="fa fa-tags"></i>&nbsp${{ product.get_price|floatformat:2 }}</span>
       </p>
-      {% endif %}      
+      {% endif %}
+
     </div>
+
   </div>
   {% endfor %}
 </div>
