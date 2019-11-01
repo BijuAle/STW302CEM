@@ -9,8 +9,8 @@ class ProductCreateTestCase(APITestCase):
     def test_create_product(self):
         initial_product_count = Product.objects.count()
         product_attrs = {
-            'name': 'New Product',
-            'description': 'Awesome product',
+            'name': 'New Cake',
+            'description': 'Awesome Cake',
             'price': '123.45',
         }
         response = self.client.post('/api/v1/products/new', product_attrs)
@@ -57,19 +57,19 @@ class ProductUpdateTestCase(APITestCase):
         response = self.client.patch(
             '/api/v1/products/{}/'.format(product.id),
             {
-                'name': 'New Product',
-                'description': 'Awesome product',
+                'name': 'New Cake',
+                'description': 'Awesome Cake',
                 'price': 123.45,
             },
             format='json',
         )
         updated = Product.objects.get(id=product.id)
-        self.assertEqual(updated.name, 'New Product')
+        self.assertEqual(updated.name, 'New Cake')
 
     def test_upload_product_photo(self):
         product = Product.objects.first()
         original_photo = product.photo
-        photo_path = os.path.join(settings.MEDIA_ROOT, 'products', 'vitamin-iron.jpg')
+        photo_path = os.path.join(settings.MEDIA_ROOT, 'products', 'apple.jpg')
         with open(photo_path, 'rb') as photo_data:
             response = self.client.patch('/api/v1/products/{}/'.format(product.id), {
                 'photo': photo_data,
@@ -78,7 +78,7 @@ class ProductUpdateTestCase(APITestCase):
         self.assertNotEqual(response.data['photo'], original_photo)
         try:
             updated = Product.objects.get(id=product.id)
-            expected_photo = os.path.join(settings.MEDIA_ROOT, 'products', 'vitamin-iron')
+            expected_photo = os.path.join(settings.MEDIA_ROOT, 'products', 'apple')
             self.assertTrue(updated.photo.path.startswith(expected_photo))
         finally:
             os.remove(updated.photo.path)
