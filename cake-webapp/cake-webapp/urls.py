@@ -2,42 +2,52 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
-from django.conf.urls import url
 
 import store.views
 import store.api_views
 
 
-admin.site.site_header = 'My project'                    # default: "Django Administration"
-admin.site.index_title = 'Features area'                 # default: "Site administration"
-admin.site.site_title = 'HTML title from adminsitration'  # default: "Django site admin"
+# default: "Django Administration"
+admin.site.site_header = 'My project'
+# default: "Site administration"
+admin.site.index_title = 'Features area'
+# default: "Django site admin"
+admin.site.site_title = 'HTML title from adminsitration'
 
 
 urlpatterns = [
-    #User Registration
+
+    # Show index page / login
+    path(r'', store.views.index, name='index'),
+
+    #logout
+    path(r'logout', store.views.logout, name='logout'),
+
+    # Show page: User Registration
     path(r'register', store.views.register, name='register'),
-        
-    #Retrieve all cakes
-    path('api/v1/products/', store.api_views.ProductList.as_view()),
 
-    #Create a cake
-    path('api/v1/products/new', store.api_views.ProductCreate.as_view()),
+    # Show cart
+    path(r'cart/', store.views.cart, name='shopping-cart'),
 
-    #Retrieve, update, and destroy a cake
-    path('api/v1/products/<int:id>/', store.api_views.ProductRetrieveUpdateDestroy.as_view()),
+    # Show all cakes
+    path(r'list', store.views.listAllCakes, name='listAllCakes'),
 
-    #Stats
+    # Show individual cake
+    path('products/<int:id>/', store.views.showCake, name='showCake'),
+
+    # Stats
     path('api/v1/products/<int:id>/stats', store.api_views.ProductStats.as_view()),
 
-    #Admin dashboard for cake CRUD
-    path('admin/', admin.site.urls),
-    
-    #Show individual cake
-    path('products/<int:id>/', store.views.show, name='show-product'),
+    # Retrieve all cakes
+    path('api/v1/products/', store.api_views.ProductList.as_view()),
 
-    #Show cart
-    path('cart/', store.views.cart, name='shopping-cart'),
+    # Create a cake
+    path('api/v1/products/new', store.api_views.ProductCreate.as_view()),
 
-    #Show all cakes
-    path('', store.views.index, name='list-products'),
+    # Retrieve, update, and destroy a cake
+    path('api/v1/products/<int:id>/', store.api_views.ProductRetrieveUpdateDestroy.as_view()),
+
+    # Admin dashboard for cake CRUD
+    path('admin/', admin.site.urls)
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
