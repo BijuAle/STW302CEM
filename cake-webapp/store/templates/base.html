@@ -30,12 +30,13 @@
             <a class="nav-item nav-link" href="{% url 'listAllCakes' %}">View all cakes</a>
             <a class="nav-item nav-link" href="{% url 'shopping-cart' %}">Cart</a>
             <a class="nav-item nav-link" href="#">Lorem</a>
-            <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
           </div>
         </section>
       </div>
       <nav>
         <h4><span class="badge badge-info username"><i class="fa fa-user-circle">&nbsp</i>Hello, {{user.first_name}}</span></h4>
+        <a class="nav-item nav-link" href="{% url 'logout' %}">&nbsp<i class="fa fa-sign-out"></i>Logout</a>
+
   </header>
   <div class="container">
     {% block content %}
