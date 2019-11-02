@@ -26,14 +26,17 @@ urlpatterns = [
     # Show page: User Registration
     path(r'register', store.views.register, name='register'),
 
-    # Show cart
-    path(r'cart/', store.views.cart, name='shopping-cart'),
+    # Add to Cart
+    path(r'add_to_cart/<pk>/', store.views.addToCart, name='addToCart'),
+
+    # Remove from Cart
+    path(r'remove_from_cart/<pk>/', store.views.removeFromCart, name='removeFromCart'),
 
     # Show all cakes
-    path(r'list', store.views.listAllCakes, name='listAllCakes'),
-
+    path(r'list', store.views.CakeListView.as_view(), name='listAllCakes'),
+    
     # Show individual cake
-    path('products/<int:id>/', store.views.showCake, name='showCake'),
+    path('products/<pk>/', store.views.CakeSingleView.as_view(), name='showCake'),
 
     # Stats
     path('api/v1/products/<int:id>/stats', store.api_views.ProductStats.as_view()),

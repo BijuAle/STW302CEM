@@ -1,6 +1,7 @@
 
 from django.utils import timezone
 from django.db import models
+from django.conf import settings
 
 OCCASIONS = (
     ('B', 'Birthday'),
@@ -46,41 +47,22 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
-
-class ShoppingCart(models.Model):
-    TAX_RATE = 0.13
-
-    id = models.AutoField(primary_key=True)
-    name = models.CharField(max_length=200)
-    address = models.CharField(max_length=200)
-
-    def subtotal(self):
-        amount = 0.0
-        for item in self.shopping_cart_items:
-            amount += item.quantity * item.product.get_price()
-        return round(amount, 2)
-
-    def taxes(self):
-        return round(self.TAX_RATE * self.subtotal(), 2)
-
-    def total(self):
-        return round(self.subtotal() * self.taxes(), 2)
-
-    def __repr__(self):
-        name = self.name or '[Guest]'
-        address = self.address or '[No Address]'
-        return '<ShoppingCart object ({}) "{}" "{}">'.format(self.id, name, address)
+class OrderItem (models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    ordered = models.BooleanField(default=False)
+    item = models.ForeignKey(Product, on_delete=models.CASCADE)
+    qty = models.IntegerField(default=1)
 
 
-class ShoppingCartItem(models.Model):
-    shopping_cart = models.ForeignKey(
-        ShoppingCart, related_name='items', related_query_name='item', on_delete=models.CASCADE)
-    product = models.ForeignKey(
-        Product, related_name='+', on_delete=models.CASCADE)
-    quantity = models.IntegerField()
+    def __str__(self):
+        return f"{self.qty} of {self.item.name}"
 
-    def total(self):
-        return round(self.quantity * self.product.current_price())
+class Cart(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    items = models.ManyToManyField(OrderItem)
+    start_date = models.DateTimeField(auto_now_add=True)
+    ordered_date = models.DateTimeField()
+    ordered = models.BooleanField(default=False)
 
-    def __repr__(self):
-        return '<ShoppingCartItem object ({}) {}x "{}">'.format(self.id, self.quantity, self.product.name)
+    def __str__(self):
+        return self.user.username
