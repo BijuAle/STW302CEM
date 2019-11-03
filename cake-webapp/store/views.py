@@ -22,7 +22,6 @@ def index(request):
         form = LoginForm()
     return render(request, 'store/index.html', {'form': form})
 
-
 def register(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
@@ -36,14 +35,11 @@ def register(request):
     form = RegistrationForm()
     return render(request, 'store/register.html', {'form': form})
 
-
 def logout(request):
     auth.logout(request)
     return redirect('index')
 
 # Replaced by CakeListView()
-
-
 def listAllCakes(request):
     if not request.user.is_authenticated:
         return redirect('index')
@@ -53,8 +49,6 @@ def listAllCakes(request):
     return render(request, 'store/product_list.html', context)
 
 # Replaced by CakeSingleView()
-
-
 def showCake(request, id):
     if not request.user.is_authenticated:
         return redirect('index')
@@ -63,16 +57,13 @@ def showCake(request, id):
     }
     return render(request, 'store/product.html', context)
 
-
 class CakeListView(ListView):
     model = Product
     template_name = 'store/product_list.html'
 
-
 class CakeSingleView(DetailView):
     model = Product
     template_name = 'store/product.html'
-
 
 def addToCart(request, pk):
     item = get_object_or_404(Product, pk=pk)
@@ -103,7 +94,6 @@ def addToCart(request, pk):
         messages.info(request, 'This item was added to your cart.')
         return redirect('showCake', pk=item.pk)
 
-
 def removeFromCart(request, pk):
     item = get_object_or_404(Product, pk=pk)
     order_qs = Cart.objects.filter(
@@ -132,3 +122,12 @@ def removeFromCart(request, pk):
     else:
         messages.info(request, "You do not have an active order")
         return redirect('showCake', pk=item.pk)
+
+
+def getCart(request):
+    if not request.user.is_authenticated:
+        return redirect('index')
+    context = {
+        'products': Product.objects.all(),
+    }
+    return render(request, 'store/product_list.html', context)
