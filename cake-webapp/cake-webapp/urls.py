@@ -8,7 +8,7 @@ import store.api_views
 
 
 # default: "Django Administration"
-admin.site.site_header = 'My project'
+admin.site.site_header = 'Cake WebStore'
 # default: "Site administration"
 admin.site.index_title = 'Features area'
 # default: "Django site admin"
