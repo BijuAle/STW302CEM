@@ -7,7 +7,6 @@ class ProductSerializer(serializers.ModelSerializer):
     is_on_sale = serializers.BooleanField(read_only=True)
     current_price = serializers.FloatField(read_only=True)
     description = serializers.CharField(min_length=2, max_length=10000)
-    cart_items = serializers.SerializerMethodField()
     # price = serializers.FloatField(min_value=1.00, max_value=100000)
     price = serializers.DecimalField(
         min_value=1.00, max_value=100000,
@@ -32,13 +31,9 @@ class ProductSerializer(serializers.ModelSerializer):
         model = Product
         fields = (
             'id', 'name', 'description', 'price', 'sale_start', 'sale_end',
-            'is_on_sale', 'current_price', 'cart_items',
+            'is_on_sale', 'current_price',
             'photo', 'warranty', 'discount_rate',
         )
-
-    def get_cart_items(self, instance):
-        items = ShoppingCartItem.objects.filter(product=instance)
-        return CartItemSerializer(items, many=True).data
 
     def update(self, instance, validated_data):
         if validated_data.get('warranty', None):
