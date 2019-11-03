@@ -46,4 +46,6 @@ class AccountTestCase(LiveServerTestCase):
         submit.send_keys(Keys.RETURN)
 
         # check the returned result
-        #assert '' in selenium.page_source
+        assert '' in selenium.page_source
+
+    #def test_login(selenium):
