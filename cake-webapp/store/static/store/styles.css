@@ -70,3 +70,15 @@ header {
 .username{
 	color:black !important;
 }
+.table td.fit, 
+.table th.fit {
+    white-space: nowrap;
+    width: 1%;
+}
+.table td {
+	text-align: center;   
+ }
+ table{
+	margin-left:auto;
+	margin-right:auto;
+ }

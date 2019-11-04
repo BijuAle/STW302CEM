@@ -10,6 +10,7 @@ OCCASIONS = (
     ('G', 'General')
 )
 
+
 class Product(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=200)
@@ -19,7 +20,8 @@ class Product(models.Model):
     discount_rate = models.FloatField(null=False, blank=True, default=0)
     sale_start = models.DateTimeField(blank=True, null=True, default=None)
     sale_end = models.DateTimeField(blank=True, null=True, default=None)
-    photo = models.ImageField(blank=True, null=True, default=None, upload_to='products')
+    photo = models.ImageField(blank=True, null=True,
+                              default=None, upload_to='products')
 
     def is_on_sale(self):
         now = timezone.now()
@@ -47,18 +49,21 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
+
 class OrderItem(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE)
     ordered = models.BooleanField(default=False)
     item = models.ForeignKey(Product, on_delete=models.CASCADE)
     qty = models.IntegerField(default=1)
 
-
     def __str__(self):
         return f"{self.qty} of {self.item.name}"
 
+
 class Cart(models.Model):
-    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user = models.ForeignKey(settings.AUTH_USER_MODEL,
+                             on_delete=models.CASCADE)
     items = models.ManyToManyField(OrderItem)
     start_date = models.DateTimeField(auto_now_add=True)
     ordered_date = models.DateTimeField()
@@ -69,6 +74,6 @@ class Cart(models.Model):
 
     def getCartItems(self):
         return self.items.all()
-    
+
     def getCartTotal(self):
-        return sum([item.product.get_rounded_price() for item in self.items.all()])
+        return sum([each.item.current_price()*each.qty for each in self.items.all()])

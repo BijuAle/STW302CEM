@@ -29,8 +29,17 @@ urlpatterns = [
     # Add to Cart
     path(r'add_to_cart/<pk>/', store.views.addToCart, name='addToCart'),
 
+    # Add to Cart (from view - Order Summary)
+    path(r'addToCart_os/<pk>/', store.views.addToCart_OS, name='addToCart_OS'),
+
     # Remove from Cart
     path(r'remove_from_cart/<pk>/', store.views.removeFromCart, name='removeFromCart'),
+
+    # Remove from Cart (from view - Order Summary)
+    path(r'remove_from_cart_os/<pk>/', store.views.removeFromCart_OS, name='removeFromCart_OS'),
+
+    # Show Order Summary - Cart
+    path(r'order_summary/', store.views.getCart, name='order_summary'),
 
     # Show all cakes
     path(r'list', store.views.CakeListView.as_view(), name='listAllCakes'),

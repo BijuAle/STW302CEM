@@ -1,67 +1,99 @@
 {% extends "base.html" %}
-
 {% block content %}
 
- <section>
-   <div class="row">
-    <table class="table table-hover table-bordered text-center">
+<section>
+  <div class="row">
+    <table class="table table-hover table-borderless text-center">
+      <thead class="thead-dark"></thead>
       <tr class="text-center">
-        <th>no.</th>
-        <th>Item</th>
-        <th>Price</th>
+        <th class="fit">SN.</th>
+        <th class="fit">Image</th>
+        <th class="fit">Cake</th>
+        <th class="fit">Qty</th>
+        <th class="fit">Price</th>
       </tr>
-      {% for item in order.get_cart_items %}
-        <tr>
-          <td>{{ forloop.counter }}</td>
-          <td>
-            {{ item.product.name }}
-            <span class="pull-right">
-              <a href="{% url 'shopping_cart:delete_item' item.id %}" data-balloon="remove this item from cart" class="text-danger" onclick="return confirm_delete();">
-                <i class="fas fa-trash"></i>
-              </a>
-            </span>
-          </td>
-          <td>{{ item.product.price }}</td>
-        </tr>
+      </thead>
+      {% for each in order.getCartItems %}
+      <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>
+          {% if each.item.photo %}
+          <a href="{% url 'showCake' each.item.id %}">
+            <img class="img-rounded hover-effect" width="100" src="{{ MEDIA_URL }}{{ each.item.photo }}" />
+          </a>
+          {% endif %}
+        </td>
+        <td>
+          {{ each.item }}<br>
+          <a href="{% url 'removeFromCart_OS' each.item.id %}">
+            <span class="badge badge-pill badge-danger"><i class="fa fa-minus-circle"></i>&nbsp</i>Quantity</span>
+          </a><br>
+          <a href="{% url 'addToCart_OS' each.item.id %}">
+            <span class="badge badge-pill badge-warning"><i class="fa fa-plus-circle"></i>&nbsp</i>Quantity</span>
+          </a>
+        </td>
+        <td>
+          <span class="badge badge-pill badge-secondary">{{each.qty}}</span>
+        </td>
+        <td>
+          {% if each.item.is_on_sale %}
+          <span class="badge badge-pill badge-danger">
+            <iclass="fa fa-tags"></i>&nbsp<del>${{ each.item.get_price|floatformat:2 }}</del>
+          </span><br />
+          <span class="badge badge-pill badge-warning">SALE: ${{ each.item.current_price|floatformat:2 }}</span>
+          {% else %}
+          <span class="badge badge-pill badge-danger"><i
+              class="fa fa-tags"></i>&nbsp${{ each.item.get_price|floatformat:2 }}</span>
+          {% endif %}
+        </td>
+      </tr>
       {% empty %}
-        <tr>
-          <td colspan= 3> You have not added any items yet.</td>
-        </tr>
+      <tr>
+        <td colspan=5> You have not added any items yet.</td>
+      </tr>
       {% endfor %}
       <tr>
-        {% if order.get_cart_total != None %}
+        {% if order.getCartTotal != None %}
         <td colspan=2>
           <strong class="pull-right">Order Total:</strong>
         </td>
-        
-        <td colspan= 1>
-          $<strong>{{ order.get_cart_total }}</strong>
+        <td colspan=1 class="alert alert-dark" role="alert">
+          $<strong>{{ order.getCartTotal }}</strong>
         </td>
         {% endif %}
       </tr>
       <tr>
-        <td colspan=1 >
-          <a href="{% url 'products:product-list' %}" class="btn btn-warning pull-left">
-            {% if order %}Continue Shopping{% else %}Add Items to Cart {% endif %}
-          </a> 
-        </td>
-        <td colspan=2>
-          {% if order.get_cart_items %}
-            <a href="{% url 'shopping_cart:checkout' %}" class="pull-right btn btn-primary">Proceed To Checkout</a>
+        <td colspan=5>
+          <a href="{% url 'listAllCakes' %}">
+            {% if order %}<span class="btn btn-secondary">Continue Shopping</span>{% else %}Add Items to
+            Cart {% endif %}
+          </a>
+          {% if order.getCartItems %}
+          <a href="#" class="btn btn-primary">Proceed To Checkout</a>
           {% endif %}
         </td>
       </tr>
     </table>
-     
-   </div>
- </section>
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-dark alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+      {{ message }}
+      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+  </div>
+</section>
 {% endblock %}
 
 {% block scripts %}
-  {{ block.super }}
-  <script>
-  function confirm_delete(){
+{{ block.super }}
+<script>
+  function confirm_delete() {
     return confirm("Do you want to remove this item from cart?");
   }
-  </script>
+</script>
 {% endblock scripts %}

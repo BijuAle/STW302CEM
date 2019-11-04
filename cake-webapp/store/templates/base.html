@@ -28,12 +28,13 @@
         <section class="collapse navbar-collapse" id="myTogglerNav">
           <div class="navbar-nav">
             <a class="nav-item nav-link" href="{% url 'listAllCakes' %}">View all cakes</a>
-            <a class="nav-item nav-link" href="#">Cart</a>
+            <a class="nav-item nav-link" href="{% url 'order_summary' %}">View My Cart</a>
           </div>
         </section>
       </div>
       <nav>
-        <h4><span class="badge badge-info username"><i class="fa fa-user-circle">&nbsp</i>Hello, {{user.first_name}}</span></h4>
+        <h4><span class="badge badge-info username"><i class="fa fa-user-circle">&nbsp</i>Hello,
+            {{user.first_name}}</span></h4>
         <a class="nav-item nav-link" href="{% url 'logout' %}">&nbsp<i class="fa fa-sign-out"></i>Logout</a>
 
   </header>
