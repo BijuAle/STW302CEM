@@ -5,6 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+
 class AccountTestCase(LiveServerTestCase):
 
     def setUp(self):
@@ -206,6 +207,8 @@ class AccountTestCase(LiveServerTestCase):
         assert '' in selenium.page_source
 
 # 'Admin Login, Product UD, Cart View, Admin change PWD, Admin logout '
+
+
 class AdminTestCase(LiveServerTestCase):
 
     def setUp(self):
@@ -251,13 +254,14 @@ class AdminTestCase(LiveServerTestCase):
         password1 = WebDriverWait(selenium, 2).until(
             EC.presence_of_element_located((By.ID, "id_password")))
         password1.send_keys('biju')
-    
+
         submit = WebDriverWait(selenium, 2).until(
             EC.presence_of_element_located((By.XPATH, "//input[@value='Log in']")))
         submit.send_keys(Keys.RETURN)
 
         addproduct = WebDriverWait(selenium, 2).until(
-            EC.presence_of_element_located((By.XPATH, "//a[@href='/admin/store/product/add/']")))
+            EC.presence_of_element_located((By.XPATH,
+             "//a[@href='/admin/store/product/add/']")))
         addproduct.send_keys(Keys.RETURN)
 
         # Opening the link we want to test
@@ -318,13 +322,14 @@ class AdminTestCase(LiveServerTestCase):
         password1 = WebDriverWait(selenium, 2).until(
             EC.presence_of_element_located((By.ID, "id_password")))
         password1.send_keys('biju')
-    
+
         submit = WebDriverWait(selenium, 2).until(
             EC.presence_of_element_located((By.XPATH, "//input[@value='Log in']")))
         submit.send_keys(Keys.RETURN)
 
         addproduct = WebDriverWait(selenium, 2).until(
-            EC.presence_of_element_located((By.XPATH, "//a[@href='/admin/store/product/add/']")))
+            EC.presence_of_element_located((By.XPATH,
+             "//a[@href='/admin/store/product/add/']")))
         addproduct.send_keys(Keys.RETURN)
 
         # Opening the link we want to test
@@ -374,9 +379,9 @@ class AdminTestCase(LiveServerTestCase):
         selenium.get('http://127.0.0.1:8000/admin/store/product/')
 
         product = WebDriverWait(selenium, 2).until(
-            EC.presence_of_element_located((By.XPATH, "//a[@href='/admin/store/product/17/change/']")))
+            EC.presence_of_element_located((By.XPATH,"//a[@href='/admin/store/product/27/change/']")))
         product.send_keys(Keys.RETURN)
-        
+
         name = WebDriverWait(selenium, 2).until(
             EC.presence_of_element_located((By.ID, "id_name")))
         name.send_keys('sour cake')
@@ -433,7 +438,7 @@ class AdminTestCase(LiveServerTestCase):
         password1 = WebDriverWait(selenium, 2).until(
             EC.presence_of_element_located((By.ID, "id_password")))
         password1.send_keys('biju')
-    
+
         submit = WebDriverWait(selenium, 2).until(
             EC.presence_of_element_located((By.XPATH, "//input[@value='Log in']")))
         submit.send_keys(Keys.RETURN)
@@ -489,11 +494,11 @@ class AdminTestCase(LiveServerTestCase):
         selenium.get('http://127.0.0.1:8000/admin/store/product/')
 
         product = WebDriverWait(selenium, 2).until(
-            EC.presence_of_element_located((By.XPATH, "//a[@href='/admin/store/product/17/change/']")))
+            EC.presence_of_element_located((By.XPATH, "//a[@href='/admin/store/product/28/change/']")))
         product.send_keys(Keys.RETURN)
-        
+
         delete = WebDriverWait(selenium, 2).until(
-            EC.presence_of_element_located((By.XPATH, "//a[@href='/admin/store/product/17/delete/']")))
+            EC.presence_of_element_located((By.XPATH, "//a[@href='/admin/store/product/28/delete/']")))
         delete.send_keys(Keys.RETURN)
 
         sure = WebDriverWait(selenium, 2).until(
@@ -503,7 +508,261 @@ class AdminTestCase(LiveServerTestCase):
         # check the returned result
         assert '' in selenium.page_source
 
-    def test_admin_logout(self):        
+    def test_admin_cart_add(self):
+        selenium = self.selenium
+        # Opening the link we want to test
+        selenium.get('http://127.0.0.1:8000/admin')
+
+        # Get the form element & fill it
+        username = WebDriverWait(selenium, 2).until(
+            EC.presence_of_element_located((By.ID, "id_username")))
+        username.send_keys('biju')
+
+        password1 = WebDriverWait(selenium, 2).until(
+            EC.presence_of_element_located((By.ID, "id_password")))
+        password1.send_keys('biju')
+
+        submit = WebDriverWait(selenium, 2).until(
+            EC.presence_of_element_located((By.XPATH, "//input[@value='Log in']")))
+        submit.send_keys(Keys.RETURN)
+
+        addcarts = WebDriverWait(selenium, 2).until(
+            EC.presence_of_element_located((By.XPATH,
+             "//a[@href='/admin/store/cart/add/']")))
+        addcarts.send_keys(Keys.RETURN)
+
+        # Opening the link we want to test
+        selenium.get('http://127.0.0.1:8000/admin/store/cart/add/')
+
+        user = WebDriverWait(selenium, 2).until(
+            EC.presence_of_element_located((By.ID, "id_user")))
+        user.send_keys('sushan')
+
+        items = WebDriverWait(selenium, 2).until(
+            EC.presence_of_element_located((By.XPATH, "//select[@name='items']")))
+        items.send_keys(Keys.RETURN)
+
+        OrderedDate = WebDriverWait(selenium, 2).until(
+            EC.presence_of_element_located((By.ID, "id_ordered_date_0")))
+        SaleStartDate.send_keys('2019-11-01')
+
+        OrderedTime = WebDriverWait(selenium, 2).until(
+            EC.presence_of_element_located((By.ID, "id_ordered_date_1")))
+        SaleStartTime.send_keys('06:00:00')
+
+        submit = WebDriverWait(selenium, 2).until(
+            EC.presence_of_element_located((By.XPATH, "//input[@name='_save']")))
+        submit.send_keys(Keys.RETURN)
+        # check the returned result
+        assert '' in selenium.page_source
+
+    def test_admin_carts_update(self):
+        selenium = self.selenium
+        # Opening the link we want to test
+        selenium.get('http://127.0.0.1:8000/admin')
+
+        # Get the form element & fill it
+        username = WebDriverWait(selenium, 2).until(
+            EC.presence_of_element_located((By.ID, "id_username")))
+        username.send_keys('biju')
+
+        password1 = WebDriverWait(selenium, 2).until(
+            EC.presence_of_element_located((By.ID, "id_password")))
+        password1.send_keys('biju')
+
+        submit = WebDriverWait(selenium, 2).until(
+            EC.presence_of_element_located((By.XPATH, "//input[@value='Log in']")))
+        submit.send_keys(Keys.RETURN)
+
+        addcarts = WebDriverWait(selenium, 2).until(
+            EC.presence_of_element_located((By.XPATH,
+             "//a[@href='/admin/store/cart/add/']")))
+        addcarts.send_keys(Keys.RETURN)
+
+        # Opening the link we want to test
+        selenium.get('http://127.0.0.1:8000/admin/store/cart/add/')
+
+        user = WebDriverWait(selenium, 2).until(
+            EC.presence_of_element_located((By.ID, "id_user")))
+        user.send_keys('sushan')
+
+        items = WebDriverWait(selenium, 2).until(
+            EC.presence_of_element_located((By.XPATH, "//select[@name='items']")))
+        items.send_keys(Keys.RETURN)
+
+        OrderedDate = WebDriverWait(selenium, 2).until(
+            EC.presence_of_element_located((By.ID, "id_ordered_date_0")))
+        SaleStartDate.send_keys('2019-11-01')
+
+        OrderedTime = WebDriverWait(selenium, 2).until(
+            EC.presence_of_element_located((By.ID, "id_ordered_date_1")))
+        SaleStartTime.send_keys('06:00:00')
+
+        submit = WebDriverWait(selenium, 2).until(
+            EC.presence_of_element_located((By.XPATH, "//input[@name='_save']")))
+        submit.send_keys(Keys.RETURN)
+        # Opening the link we want to test
+        selenium.get('http://127.0.0.1:8000/admin/store/cart/')
+
+        carts = WebDriverWait(selenium, 2).until(
+            EC.presence_of_element_located((By.XPATH,"//a[@href='/admin/store/cart/6/change/']")))
+        carts.send_keys(Keys.RETURN)
+
+        user = WebDriverWait(selenium, 2).until(
+            EC.presence_of_element_located((By.ID, "id_user")))
+        user.send_keys('sushan')
+
+        items = WebDriverWait(selenium, 2).until(
+            EC.presence_of_element_located((By.XPATH, "//select[@name='items']")))
+        items.send_keys(Keys.RETURN)
+
+        OrderedDate = WebDriverWait(selenium, 2).until(
+            EC.presence_of_element_located((By.ID, "id_ordered_date_0")))
+        SaleStartDate.send_keys('2019-11-01')
+
+        OrderedTime = WebDriverWait(selenium, 2).until(
+            EC.presence_of_element_located((By.ID, "id_ordered_date_1")))
+        SaleStartTime.send_keys('06:00:00')
+
+        submit = WebDriverWait(selenium, 2).until(
+            EC.presence_of_element_located((By.XPATH, "//input[@name='_save']")))
+        submit.send_keys(Keys.RETURN)
+
+        # check the returned result
+        assert '' in selenium.page_source
+
+    def test_admin_carts_delete(self):
+        selenium = self.selenium
+        # Opening the link we want to test
+        selenium.get('http://127.0.0.1:8000/admin')
+
+        # Get the form element & fill it
+        username = WebDriverWait(selenium, 2).until(
+            EC.presence_of_element_located((By.ID, "id_username")))
+        username.send_keys('biju')
+
+        password1 = WebDriverWait(selenium, 2).until(
+            EC.presence_of_element_located((By.ID, "id_password")))
+        password1.send_keys('biju')
+
+        submit = WebDriverWait(selenium, 2).until(
+            EC.presence_of_element_located((By.XPATH, "//input[@value='Log in']")))
+        submit.send_keys(Keys.RETURN)
+
+        addcarts = WebDriverWait(selenium, 2).until(
+            EC.presence_of_element_located((By.XPATH,
+             "//a[@href='/admin/store/cart/add/']")))
+        addcarts.send_keys(Keys.RETURN)
+
+        # Opening the link we want to test
+        selenium.get('http://127.0.0.1:8000/admin/store/cart/add/')
+
+        user = WebDriverWait(selenium, 2).until(
+            EC.presence_of_element_located((By.ID, "id_user")))
+        user.send_keys('sushan')
+
+        items = WebDriverWait(selenium, 2).until(
+            EC.presence_of_element_located((By.XPATH, "//select[@name='items']")))
+        items.send_keys(Keys.RETURN)
+
+        OrderedDate = WebDriverWait(selenium, 2).until(
+            EC.presence_of_element_located((By.ID, "id_ordered_date_0")))
+        SaleStartDate.send_keys('2019-11-01')
+
+        OrderedTime = WebDriverWait(selenium, 2).until(
+            EC.presence_of_element_located((By.ID, "id_ordered_date_1")))
+        SaleStartTime.send_keys('06:00:00')
+
+        submit = WebDriverWait(selenium, 2).until(
+            EC.presence_of_element_located((By.XPATH, "//input[@name='_save']")))
+        submit.send_keys(Keys.RETURN)
+        # Opening the link we want to test
+        selenium.get('http://127.0.0.1:8000/admin/store/cart/')
+
+        carts = WebDriverWait(selenium, 2).until(
+            EC.presence_of_element_located((By.XPATH,"//a[@href='/admin/store/cart/6/change/']")))
+        carts.send_keys(Keys.RETURN)
+
+        user = WebDriverWait(selenium, 2).until(
+            EC.presence_of_element_located((By.ID, "id_user")))
+        user.send_keys('sushan')
+
+        items = WebDriverWait(selenium, 2).until(
+            EC.presence_of_element_located((By.XPATH, "//select[@name='items']")))
+        items.send_keys(Keys.RETURN)
+
+        OrderedDate = WebDriverWait(selenium, 2).until(
+            EC.presence_of_element_located((By.ID, "id_ordered_date_0")))
+        SaleStartDate.send_keys('2019-11-01')
+
+        OrderedTime = WebDriverWait(selenium, 2).until(
+            EC.presence_of_element_located((By.ID, "id_ordered_date_1")))
+        SaleStartTime.send_keys('06:00:00')
+
+        submit = WebDriverWait(selenium, 2).until(
+            EC.presence_of_element_located((By.XPATH, "//input[@name='_save']")))
+        submit.send_keys(Keys.RETURN)
+
+        # Opening the link we want to test
+        selenium.get('http://127.0.0.1:8000/admin/store/cart/')
+
+        product = WebDriverWait(selenium, 2).until(
+            EC.presence_of_element_located((By.XPATH, "//a[@href='/admin/store/cart/6/change/']")))
+        product.send_keys(Keys.RETURN)
+
+        delete = WebDriverWait(selenium, 2).until(
+            EC.presence_of_element_located((By.XPATH, "//a[@href='/admin/store/cart/6/delete/']")))
+        delete.send_keys(Keys.RETURN)
+
+        sure = WebDriverWait(selenium, 2).until(
+            EC.presence_of_element_located((By.XPATH, "//input[@type='submit']")))
+        sure.send_keys(Keys.RETURN)
+
+        # check the returned result
+        assert '' in selenium.page_source
+
+    def test_admin_change_password(self):
+        selenium = self.selenium
+        # Opening the link we want to test
+        selenium.get('http://127.0.0.1:8000/admin')
+
+        # Get the form element & fill it
+        username = WebDriverWait(selenium, 2).until(
+            EC.presence_of_element_located((By.ID, "id_username")))
+        username.send_keys('biju')
+
+        password1 = WebDriverWait(selenium, 2).until(
+            EC.presence_of_element_located((By.ID, "id_password")))
+        password1.send_keys('biju')
+
+        submit = WebDriverWait(selenium, 2).until(
+            EC.presence_of_element_located((By.XPATH, "//input[@value='Log in']")))
+        submit.send_keys(Keys.RETURN)
+
+        ChangePassword = WebDriverWait(selenium, 2).until(
+            EC.presence_of_element_located((By.XPATH, "//a[@href='/admin/password_change/']")))
+        ChangePassword.send_keys(Keys.RETURN)
+
+        password1 = WebDriverWait(selenium, 2).until(
+            EC.presence_of_element_located((By.ID, "id_old_password")))
+        password1.send_keys('biju')
+
+        password2 = WebDriverWait(selenium, 2).until(
+            EC.presence_of_element_located((By.ID, "id_new_password1")))
+        password2.send_keys('biju')
+
+        password3 = WebDriverWait(selenium, 2).until(
+            EC.presence_of_element_located((By.ID, "id_new_password2")))
+        password3.send_keys('biju')
+
+        submit = WebDriverWait(selenium, 2).until(
+            EC.presence_of_element_located((By.XPATH, "//input[@value='Change my password']")))
+        submit.send_keys(Keys.RETURN)
+
+        # check the returned result
+        assert '' in selenium.page_source
+
+    def test_admin_logout(self):
         selenium = self.selenium
         # Opening the link we want to test
         selenium.get('http://127.0.0.1:8000/admin')
@@ -524,7 +783,6 @@ class AdminTestCase(LiveServerTestCase):
         logout = WebDriverWait(selenium, 2).until(
             EC.presence_of_element_located((By.XPATH, "//a[@href='/admin/logout/']")))
         logout.send_keys(Keys.RETURN)
-
 
         # check the returned result
         assert '' in selenium.page_source
