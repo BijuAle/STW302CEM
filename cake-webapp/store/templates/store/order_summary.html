@@ -6,11 +6,11 @@
     <table class="table table-hover table-borderless text-center">
       <thead class="thead-dark"></thead>
       <tr class="text-center">
-        <th class="fit">SN.</th>
-        <th class="fit">Image</th>
-        <th class="fit">Cake</th>
-        <th class="fit">Qty</th>
-        <th class="fit">Price</th>
+        <th class="fit"></th>
+        <th class="fit"></th>
+        <th class="fit">Cake Title</th>
+        <th class="fit">Quantity</th>
+        <th class="fit">Per Unit Price</th>
       </tr>
       </thead>
       {% for each in order.getCartItems %}
@@ -69,7 +69,7 @@
             Cart {% endif %}
           </a>
           {% if order.getCartItems %}
-          <a href="#" class="btn btn-primary">Proceed To Checkout</a>
+          <a href="{% url 'place_order' %}" class="btn btn-primary">Proceed To Checkout</a>
           {% endif %}
         </td>
       </tr>
@@ -88,12 +88,3 @@
   </div>
 </section>
 {% endblock %}
-
-{% block scripts %}
-{{ block.super }}
-<script>
-  function confirm_delete() {
-    return confirm("Do you want to remove this item from cart?");
-  }
-</script>
-{% endblock scripts %}

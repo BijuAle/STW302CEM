@@ -41,6 +41,9 @@ urlpatterns = [
     # Show Order Summary - Cart
     path(r'order_summary/', store.views.getCart, name='order_summary'),
 
+    # Place Order
+    path(r'place_order', store.views.place_order, name='place_order'),
+
     # Show all cakes
     path(r'list', store.views.CakeListView.as_view(), name='listAllCakes'),
     

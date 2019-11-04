@@ -10,7 +10,7 @@ class AccountTestCase(LiveServerTestCase):
 
     def setUp(self):
         self.selenium = webdriver.Chrome(
-            'C:/Users/User/Desktop/STW302CEM/chromedriver.exe')
+            '')
         super(AccountTestCase, self).setUp()
 
     def tearDown(self):

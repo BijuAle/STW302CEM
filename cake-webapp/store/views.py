@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 
 from store.models import Product, OrderItem, Cart
 from store.forms import RegistrationForm, LoginForm
+import datetime
 
 
 def index(request):
@@ -105,6 +106,7 @@ def addToCart(request, pk):
         messages.info(request, item.name + ' was added to your cart.')
         return redirect('showCake', pk=item.pk)
 
+
 @login_required(login_url='/')
 def addToCart_OS(request, pk):
     item = get_object_or_404(Product, pk=pk)
@@ -134,6 +136,7 @@ def addToCart_OS(request, pk):
         order.items.add(order_item)
         messages.info(request, item.name + ' was added to your cart.')
         return redirect('order_summary')
+
 
 @login_required(login_url='/')
 def removeFromCart(request, pk):
@@ -210,6 +213,7 @@ def removeFromCart_OS(request, pk):
             request, 'You do not have an active order. Cart is empty.')
         return redirect('order_summary')
 
+
 @login_required(login_url='/')
 def getCart(request):
     order = get_user_pending_order(request)
@@ -219,6 +223,7 @@ def getCart(request):
     return render(request, 'store/order_summary.html', context)
 
 
+@login_required()
 def get_user_pending_order(request):
     # get order for the correct user
     cart_qs = Cart.objects.filter(
@@ -231,3 +236,42 @@ def get_user_pending_order(request):
         return cart
     else:
         return 0
+
+
+@login_required()
+def get_user_complete_order(request):
+    # get order for the correct user
+    cart_qs = Cart.objects.filter(
+        user=request.user,
+        ordered=True
+    )
+    if cart_qs.exists():
+        # Return the only order in the list of filtered orders
+        cart = cart_qs[0]
+        return cart
+    else:
+        return 0
+
+
+@login_required()
+def place_order(request):
+
+    # get the order being processed
+    cart = get_user_pending_order(request)
+    if cart == 0:
+        messages.info(request, "Thank you! Your order was placed successfully!")
+        return redirect('order_summary')
+
+    # update the placed order
+    cart.update = True
+    cart.ordered_date = datetime.datetime.now()
+    cart.save()
+
+    # get all items in the Cart - generates a queryset
+    order_items = order_to_purchase.items.all()
+
+    # update individual order items
+    order_items.update(ordered=True)
+
+    messages.info(request, "Thank you! Your order was placed successfully!")
+    return redirect('order_summary')

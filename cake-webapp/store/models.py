@@ -68,6 +68,8 @@ class Cart(models.Model):
     start_date = models.DateTimeField(auto_now_add=True)
     ordered_date = models.DateTimeField()
     ordered = models.BooleanField(default=False)
+    delivery_address = models.CharField(max_length=500, default='None')
+    phone = models.CharField(max_length=20, default='None')
 
     def __str__(self):
         return 'Order by '+self.user.username
