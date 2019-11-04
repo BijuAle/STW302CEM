@@ -26,6 +26,7 @@
                 <section class="collapse navbar-collapse" id="myTogglerNav">
                     <div class="navbar-nav">
                         <a class="nav-item nav-link" href="{% url 'index' %}">Login</a>
+                        <a class="nav-item nav-link" href="{% url 'listAllCakes' %}">View all cakes</a>
                         <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
                     </div>
                 </section>
@@ -41,6 +42,11 @@
                     {% csrf_token %}
                     {{ form.as_p }}
                     <button type="submit">Login</button>
+
+                    <!-- Check for anonymouse user URI source -->
+                    {% if request.GET.next %}
+                    <input type="hidden" name="next" value="{{request.GET.next}}">
+                    {% endif %}
                 </form>
             </div>
             <div class="col-sm-8">
@@ -48,8 +54,10 @@
                 <p class="text-justify">
                     Cake Webstore is one of the best online cake delivey service in Nepal. You can now order
                     cakes from anywhere in Nepal at the best price. We provide online cake delivery in Kathmandu,
-                    Pokhara and Chitwan. Our vendors around Kathmandu, Pokhara and Chitwan are working hard to provide the
-                    best online cake delivery service in Nepal. We provide you the most delicious artisan cakes at the best
+                    Pokhara and Chitwan. Our vendors around Kathmandu, Pokhara and Chitwan are working hard to provide
+                    the
+                    best online cake delivery service in Nepal. We provide you the most delicious artisan cakes at the
+                    best
                     price. The wide collection of delicious cakes are showcased in our site.
                 </p>
             </div>
