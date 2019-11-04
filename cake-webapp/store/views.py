@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import auth, messages
 from django.views.generic import ListView, DetailView
 from django.utils import timezone
+from django.contrib.auth.decorators import login_required
 
 from store.models import Product, OrderItem, Cart
 from store.forms import RegistrationForm, LoginForm
@@ -15,12 +16,16 @@ def index(request):
             user = form.login(request)
             if user:
                 login(request, user)
+                #Check for anonymouse user URI source
+                if 'next' in request.POST:
+                    return redirect(request.POST.get('next'))
                 return redirect('listAllCakes')
             else:
                 return redirect('index')
     else:
         form = LoginForm()
     return render(request, 'store/index.html', {'form': form})
+
 
 def register(request):
     if request.method == 'POST':
@@ -35,6 +40,7 @@ def register(request):
     form = RegistrationForm()
     return render(request, 'store/register.html', {'form': form})
 
+@login_required(login_url='/')
 def logout(request):
     auth.logout(request)
     return redirect('index')
@@ -65,6 +71,7 @@ class CakeSingleView(DetailView):
     model = Product
     template_name = 'store/product.html'
 
+@login_required(login_url='/')
 def addToCart(request, pk):
     item = get_object_or_404(Product, pk=pk)
     order_item, created = OrderItem.objects.get_or_create(
@@ -79,51 +86,54 @@ def addToCart(request, pk):
         if order.items.filter(item__pk=item.pk).exists():
             order_item.qty += 1
             order_item.save()
-            messages.info(request, 'This item quantity was updated.')
+            messages.info(request, 'Quantity of ' + item.name + ' was updated.')
             return redirect('showCake', pk=item.pk)
         else:
             order.items.add(order_item)
-            messages.info(request, 'This item was added to your cart.')
+            messages.info(request, item.name + ' was added to your cart.')
             return redirect('showCake', pk=item.pk)
-
     else:
         ordered_date = timezone.now()
         order = Cart.objects.create(
             user=request.user, ordered_date=ordered_date)
         order.items.add(order_item)
-        messages.info(request, 'This item was added to your cart.')
+        messages.info(request, item.name + ' was added to your cart.')
         return redirect('showCake', pk=item.pk)
 
+@login_required(login_url='/')
 def removeFromCart(request, pk):
-    item = get_object_or_404(Product, pk=pk)
-    order_qs = Cart.objects.filter(
+    item_to_remove = get_object_or_404(Product, pk=pk)
+    cart_qs = Cart.objects.filter(
         user=request.user,
         ordered=False
     )
-    if order_qs.exists():
-        order = order_qs[0]
-        # check if the order item is in the order
-        if order.items.filter(item__pk=item.pk).exists():
+    if cart_qs.exists():
+        cart = cart_qs[0]
+        # check if the order item is in the cart
+        if cart.items.filter(item__pk=item_to_remove.pk).exists():
             order_item = OrderItem.objects.filter(
-                item=item,
+                item=item_to_remove,
                 user=request.user,
                 ordered=False
             )[0]
             if order_item.qty > 1:
                 order_item.qty -= 1
                 order_item.save()
+                messages.info(request, 'Removed 1 ' + item_to_remove.name + ' from your cart' )
             else:
-                order.items.remove(order_item)
-            messages.info(request, "This item quantity was updated.")
-            return redirect('showCake', pk=item.pk)
+                cart.items.remove(order_item)
+                order_item.delete()
+                messages.info(request, 'Removed ' + item_to_remove.name + ' from your cart')
+            return redirect('showCake', pk=pk)
         else:
-            messages.info(request, "This item was not in your cart")
-            return redirect('showCake', pk=item.pk)
+            messages.info(request, item_to_remove.name + ' is not present in your cart')
+            return redirect('showCake', pk=pk)
+
     else:
-        messages.info(request, "You do not have an active order")
-        return redirect('showCake', pk=item.pk)
+        messages.info(request, 'You do not have an active order. Cart is empty.')
+        return redirect('showCake', pk=pk)
 
-
+@login_required(login_url='/')
 def getCart(request):
     if not request.user.is_authenticated:
         return redirect('index')

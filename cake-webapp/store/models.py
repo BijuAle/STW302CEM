@@ -19,7 +19,7 @@ class Product(models.Model):
     discount_rate = models.FloatField(null=False, blank=True, default=0)
     sale_start = models.DateTimeField(blank=True, null=True, default=None)
     sale_end = models.DateTimeField(blank=True, null=True, default=None)
-    photo = models.ImageField(blank=True, null=True,default=None, upload_to='products')
+    photo = models.ImageField(blank=True, null=True, default=None, upload_to='products')
 
     def is_on_sale(self):
         now = timezone.now()
@@ -47,7 +47,7 @@ class Product(models.Model):
     def __str__(self):
         return self.name
 
-class OrderItem (models.Model):
+class OrderItem(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     ordered = models.BooleanField(default=False)
     item = models.ForeignKey(Product, on_delete=models.CASCADE)
@@ -65,4 +65,10 @@ class Cart(models.Model):
     ordered = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.user.username
+        return 'Order by '+self.user.username
+
+    def getCartItems(self):
+        return self.items.all()
+    
+    def getCartTotal(self):
+        return sum([item.product.get_rounded_price() for item in self.items.all()])
