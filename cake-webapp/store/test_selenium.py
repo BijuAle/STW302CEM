@@ -9,8 +9,7 @@ from selenium.webdriver.support import expected_conditions as EC
 class AccountTestCase(LiveServerTestCase):
 
     def setUp(self):
-        self.selenium = webdriver.Chrome(
-            '')
+        self.selenium = webdriver.Chrome()
         super(AccountTestCase, self).setUp()
 
     def tearDown(self):
