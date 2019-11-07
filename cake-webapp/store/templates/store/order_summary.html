@@ -64,8 +64,8 @@
       </tr>
       <tr>
         <td colspan=5>
-          <a href="{% url 'listAllCakes' %}">
-            {% if order %}<span class="btn btn-secondary">Continue Shopping</span>{% else %}Add Items to
+          <a class = 'btn btn-secondary' href="{% url 'listAllCakes' %}">
+            {% if order %}Continue Shopping{% else %}Add Items to
             Cart {% endif %}
           </a>
           {% if order.getCartItems %}

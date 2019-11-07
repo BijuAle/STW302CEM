@@ -41,6 +41,9 @@ urlpatterns = [
     # Show Order Summary - Cart
     path(r'order_summary/', store.views.getCart, name='order_summary'),
 
+    # Show Order History
+    path(r'order_history/', store.views.getOrderHistory, name='order_history'),
+
     # Place Order
     path(r'place_order', store.views.place_order, name='place_order'),
 

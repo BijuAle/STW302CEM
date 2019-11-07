@@ -231,7 +231,6 @@ def get_user_pending_order(request):
         ordered=False
     )
     if cart_qs.exists():
-        # Return the only order in the list of filtered orders
         cart = cart_qs[0]
         return cart
     else:
@@ -259,19 +258,24 @@ def place_order(request):
     # get the order being processed
     cart = get_user_pending_order(request)
     if cart == 0:
-        messages.info(request, "Thank you! Your order was placed successfully!")
-        return redirect('order_summary')
+        messages.info(request, "Order already placed!")
 
     # update the placed order
-    cart.update = True
     cart.ordered_date = datetime.datetime.now()
+    cart.ordered = True
     cart.save()
 
     # get all items in the Cart - generates a queryset
-    order_items = order_to_purchase.items.all()
+    order_items = cart.items.all()
 
     # update individual order items
     order_items.update(ordered=True)
 
     messages.info(request, "Thank you! Your order was placed successfully!")
     return redirect('order_summary')
+
+@login_required
+def getOrderHistory(request):
+    history = get_user_complete_order(request)
+    context={'history':history}
+    return render(request, 'store/order_history.html', context)
