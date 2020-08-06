@@ -1,0 +1,784 @@
+
+	
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--[if lt IE 7]>  <html lang="en-us" class="ie ie6 lte9 lte8 lte7"> <![endif]-->
+<!--[if IE 7]>     <html lang="en-us" class="ie ie7 lte9 lte8 lte7"> <![endif]-->
+<!--[if IE 8]>     <html lang="en-us" class="ie ie8 lte9 lte8"> <![endif]-->
+<!--[if IE 9]>     <html lang="en-us" class="ie ie9 lte9"> <![endif]-->
+<!--[if gt IE 9]>  <html lang="en-us"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en-us">             <!--<![endif]-->
+
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="author" content="Turnitin, LLC" />
+    <meta name="keywords" content="" /> 
+    <meta name="description" content="" />
+<title>Turnitin</title>
+
+<base href="http://api.turnitin.com">
+<style type="text/css">
+body	{
+	color: #333;
+	background: #C0C7CC;
+	padding: 0;
+	border: 0;
+	font: 13px Verdana, arial, sans-serif;
+	margin: 0;
+	}
+	
+form	{
+	padding: 0;
+	margin: 0;
+	}
+	
+body#display	{
+	}
+	
+body#bodysource	{
+	width: 520px;
+	background: #F0F4FA;
+	}
+	
+p	{
+	padding: 10px 18px;
+	margin: 0;
+	}
+	
+img	{
+	border: 0;
+	padding: 0;
+	}
+
+div	{
+	padding: 0;
+	border: 0;
+	}
+	
+iframe	{
+	border: 0;
+	margin: 0;
+	padding: 0;
+	}
+	
+strong	{
+	font-weight: bold;
+	}
+	
+ul	{
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+	font-size: 13px;
+	}
+	
+ul li	{
+	padding: 0;
+	margin: 0;
+	line-height: 16px;
+	}
+	
+#index span#exclude	{
+	margin: 0 50px 0 23px;
+	}
+	
+#index a	{
+	font-size: 11px;
+	padding: 0 8px;
+	}
+	
+#index select	{
+	font-size: 12px;
+	border: 1px solid #888;
+	}
+	
+#index input.small	{
+	margin: 0 0 0 5px;
+	width: 30px;
+	color: red;
+	font-weight: bold;
+	font-size: 13px;
+	border: 1px solid #888;
+	vertical-align: baseline;
+	}
+		
+div.links	{
+	width: 85%;
+	margin: 0 auto;
+	border-left: 1px solid #888;
+	border-right: 1px solid #888;
+	padding-top: 8px;
+	background: #E8EEF7;
+	text-align: left;
+	}
+	
+.links div	{
+	padding: 5px 13px 10px 20px;
+	border-bottom: 1px dotted #888;
+	}
+	
+.links div p	{
+	padding: 2px 0 0 40px;
+	}
+	
+div#body	{
+	line-height: 17px;
+	width: 85%;
+	margin: auto;
+	padding: 20px 0;
+	background: #fff;
+	border-bottom: 1px solid #888;
+	border-right: 1px solid #888;
+	border-left: 1px solid #888;
+	text-align: left;
+	}
+	
+#body p	{
+	color: #000;
+	padding-top: 10 0;
+	margin: 0 40px;
+	}
+#actions {
+	display: none;
+	}
+
+a.exclude	{
+    float: right;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    bottom: 20px;
+    }
+
+/*= GENERAL 
+=== === === === === === === === === === === === === === === === === === === === === === === === === === === === === === */	
+
+body  #top_bar {
+display: none !important;
+}
+
+body #index #exclude,
+#download_button,
+#print_button,
+#index .right {
+display: inline-block;
+}
+
+body #index {
+width: 85%;
+margin-left: auto;
+margin-right: auto;
+border: 1px solid #999;
+background: #ececec url(new_dynamic/images/22bd7a01a025b8de122259e42762f0a7cb_ug_toolbar_bg.gif) repeat-x center left;
+}
+
+#toolbar_wrapper {
+padding-left:45px;
+}
+
+body #top {
+width: 85%;
+background-color: #FFF;
+margin-left: auto;
+margin-right: auto;
+border: 1px solid #999;
+border-bottom: none;
+height: 210px;
+}
+body #content {
+padding: 10px 60px;
+}
+body div#prefs {
+display: none;
+}
+
+body #top h2 {
+font-size: 20px;
+font-weight: normal;
+}
+
+body #top h2 strong {
+font-weight: normal;
+}
+body #top h2 em {
+font-style: normal;
+}
+
+
+body #top h3 {
+font-size: 16px;
+font-weight: normal;
+}
+
+body #top h3 strong {
+font-weight: normal;
+}
+body #top h3 em {
+font-style: normal;
+}
+
+        
+        body #top_body li	{/*Paper info li*/
+            padding:0;
+            margin: 0px 0px 2px 0px;
+            font-size: 10px;
+            }
+            
+            #top_body #print_wrapper {
+                float:left;
+                width: 50%;
+            }
+            
+            #top_body .similarity_print_wrapper {
+                width: 45%;
+                min-width: 283px;
+            }
+                
+            #top_body .similarity_box { /*Similiarity Box w/ Similarity by Source */
+                float: right;
+                border: solid 1px #666;
+                margin-top: 60px;
+                width: 350px;
+            }
+                #top_body .similarity_box .overall_similarity {
+                    float: left;
+                    border-right: solid 1px #666;
+                }
+                    #top_body .similarity_box .overall_similarity .color_box {
+                        font-size: 14px;
+                        width: 140px;
+                    }
+                        #top_body .color_box.green {
+                            background-color: green;
+                        }
+                        #top_body .color_box.blue {
+                            background-color: blue;
+                        }
+                        #top_body .color_box.yellow {
+                            background-color: yellow;
+                        }
+                        #top_body .color_box.orange {
+                            background-color: orange;
+                        }
+                        #top_body .color_box.red {
+                            background-color: red;
+                        }
+
+                    #top_body .similarity_box .overall_similarity .similarity_title {
+                        font-size: 13px;
+                        font-weight: normal;
+                        padding: 5px 0px 0px;
+                        text-align: center;
+                    }
+
+                    #top_body .similarity_box .overall_similarity .similarity_percent {
+                        font-size: 25px;
+                        font-family: georgia, times, serif;
+                        padding: 5px 0px 15px;
+                        text-align: center;
+                    }
+
+                    #top_body .similarity_box .overall_similarity a {
+                         display: none;
+                    }
+
+                #top_body .similarity_box .similarity_by_source {
+                     float: right;
+                     font-size: 10px;
+                }
+                    #top_body .similarity_box .similarity_by_source .similarity_title {
+                         padding: 6px 0px 0px 10px;
+                         font-weight: bold;
+                         text-align: left;
+                    }
+                    #top_body .similarity_box .similarity_by_source dl {
+                        padding-left: 10px;
+                        margin: 14px 7px 0px 0px;
+                    }
+                    #top_body .similarity_box .similarity_by_source dt {
+                         float: left;
+                         width: 160px;
+                    }
+                    #top_body .similarity_box .similarity_by_source dd {
+                        float: left;
+                        margin: 0px;
+                    }
+
+	
+		
+#index span#exclude	{
+	margin: 0 50px 0 23px;
+	}
+	
+#index a	{
+	font-size: 11px;
+	padding: 0 8px;
+	}
+	
+#index select	{
+	font-size: 12px;
+	border: 1px solid #888;
+	}
+	
+#index input.small	{
+	margin: 0 0 0 5px;
+	width: 30px;
+	color: red;
+	font-weight: bold;
+	font-size: 13px;
+	border: 1px solid #888;
+	vertical-align: baseline;
+	}
+		
+div.links	{
+	width: 85%;
+	margin: 0 auto;
+	border-left: 1px solid #888;
+	border-right: 1px solid #888;
+	padding-top: 8px;
+	background: #E8EEF7;
+	text-align: left;
+	}
+	
+.links div	{
+	padding: 5px 13px 10px 20px;
+	border-bottom: 1px dotted #888;
+	}
+	
+.links div p	{
+	padding: 2px 0 0 40px;
+	}
+	
+div#body	{
+	line-height: 17px;
+	width: 85%;
+	margin: auto;
+	padding: 20px 0;
+	background: #fff;
+	border-bottom: 1px solid #888;
+	border-right: 1px solid #888;
+	border-left: 1px solid #888;
+	text-align: left;
+	}
+	
+#body p	{
+	color: #000;
+	padding-top: 10 0;
+	margin: 0 40px;
+	}
+#actions {
+	display: none;
+	}
+
+a.exclude	{
+	float: right;
+	margin: 0;
+	padding: 0;
+	}
+	
+#small_matches_prefs {
+    display:none;
+}
+/*
+Copyright (c) 2009, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.net/yui/license.txt
+version: 2.7.0
+*/
+.yui-button{display:-moz-inline-box;display:inline-block;vertical-align:text-bottom;}.yui-button .first-child{display:block;*display:inline-block;}.yui-button button,.yui-button a{display:block;*display:inline-block;border:none;margin:0;}.yui-button button{background-color:transparent;*overflow:visible;cursor:pointer;}.yui-button a{text-decoration:none;}.yui-skin-sam .yui-button{border-width:1px 0;border-style:solid;border-color:#808080;background:url(../images/yui270/build/assets/skins/sam/96b257a32a932f7739d7dab52b38ee8fcb_sprite.png) repeat-x 0 0;margin:auto .25em;}.yui-skin-sam .yui-button .first-child{border-width:0 1px;border-style:solid;border-color:#808080;margin:0 -1px;_margin:0;}.yui-skin-sam .yui-button button,.yui-skin-sam .yui-button a{padding:0 10px;font-size:93%;line-height:2;*line-height:1.7;min-height:2em;*min-height:auto;color:#000;}.yui-skin-sam .yui-button a{*line-height:1.875;*padding-bottom:1px;}.yui-skin-sam .yui-split-button button,.yui-skin-sam .yui-menu-button button{padding-right:20px;background-position:right center;background-repeat:no-repeat;}.yui-skin-sam .yui-menu-button button{background-image:url(yui270/build/button/assets/skins/sam/6305efb37fa05af65c79b58b9d4c1b03cb_menu-button-arrow.png);}.yui-skin-sam .yui-split-button button{background-image:url(yui270/build/button/assets/skins/sam/ced974d5c685e5dfa0a37b824a6b5d48cb_split-button-arrow.png);}.yui-skin-sam .yui-button-focus{border-color:#7D98B8;background-position:0 -1300px;}.yui-skin-sam .yui-button-focus .first-child{border-color:#7D98B8;}.yui-skin-sam .yui-button-focus button,.yui-skin-sam .yui-button-focus a{color:#000;}.yui-skin-sam .yui-split-button-focus button{background-image:url(yui270/build/button/assets/skins/sam/36e66540d2feba76b8991e18b76fe93bcb_split-button-arrow-focus.png);}.yui-skin-sam .yui-button-hover{border-color:#7D98B8;background-position:0 -1300px;}.yui-skin-sam .yui-button-hover .first-child{border-color:#7D98B8;}.yui-skin-sam .yui-button-hover button,.yui-skin-sam .yui-button-hover a{color:#000;}.yui-skin-sam .yui-split-button-hover button{background-image:url(yui270/build/button/assets/skins/sam/36e66540d2feba76b8991e18b76fe93bcb_split-button-arrow-hover.png);}.yui-skin-sam .yui-button-active{border-color:#7D98B8;background-position:0 -1700px;}.yui-skin-sam .yui-button-active .first-child{border-color:#7D98B8;}.yui-skin-sam .yui-button-active button,.yui-skin-sam .yui-button-active a{color:#000;}.yui-skin-sam .yui-split-button-activeoption{border-color:#808080;background-position:0 0;}.yui-skin-sam .yui-split-button-activeoption .first-child{border-color:#808080;}.yui-skin-sam .yui-split-button-activeoption button{background-image:url(yui270/build/button/assets/skins/sam/890272b241c1d8a0db3ce5680b71fab0cb_split-button-arrow-active.png);}.yui-skin-sam .yui-radio-button-checked,.yui-skin-sam .yui-checkbox-button-checked{border-color:#304369;background-position:0 -1400px;}.yui-skin-sam .yui-radio-button-checked .first-child,.yui-skin-sam .yui-checkbox-button-checked .first-child{border-color:#304369;}.yui-skin-sam .yui-radio-button-checked button,.yui-skin-sam .yui-checkbox-button-checked button{color:#fff;}.yui-skin-sam .yui-button-disabled{border-color:#ccc;background-position:0 -1500px;}.yui-skin-sam .yui-button-disabled .first-child{border-color:#ccc;}.yui-skin-sam .yui-button-disabled button,.yui-skin-sam .yui-button-disabled a{color:#A6A6A6;cursor:default;}.yui-skin-sam .yui-menu-button-disabled button{background-image:url(yui270/build/button/assets/skins/sam/4df7235ca027f2546b2a216e59f81fb0cb_menu-button-arrow-disabled.png);}.yui-skin-sam .yui-split-button-disabled button{background-image:url(yui270/build/button/assets/skins/sam/db73dce6da2f5c5f02399c93488ce69ecb_split-button-arrow-disabled.png);}
+
+</style>
+
+</head>
+
+<body onload="">
+
+
+
+<link rel="stylesheet" type="text/css" href="/r/build/css/tii/88ee4ccd3555f2b759921fb5d58d83e5cb_container.css" media="all" />
+
+
+
+
+<script type="text/javascript" src="/r/build/js/tii/8b608684a5f4aec1b540987c93498c01cb_tii_anonymous_marking.js"></script>
+
+
+
+
+<script type="text/javascript">
+
+function initAnonymousMarking () {
+    // initialize panel.  
+    var config = {
+            zindex: 4,
+            underlay: 'none',
+            modal: true,
+            visible: false,
+            draggable: false,
+            close: false,
+            fixedcenter: true
+    };
+    if ($('disable_anonymous_marking')) {
+        disableAnonymousMarkingPanel = new IP.widget.Panel($('disable_anonymous_marking'), config);
+        if($D.hasClass('disable_anonymous_marking', 'app')) {
+            disableAnonymousMarkingPanel.center = function () {
+                var nViewportOffset = 20,
+                    elementWidth = this.element.offsetWidth,
+                    elementHeight = this.element.offsetHeight,
+                    viewPortWidth = $D.getViewportWidth(),
+                    viewPortHeight = $D.getViewportHeight(),
+                    x,
+                    y;
+
+                if (elementWidth < viewPortWidth) {
+                    x = (viewPortWidth / 2) - (elementWidth / 2) + $D.getDocumentScrollLeft();
+                } else {
+                    x = nViewportOffset + $D.getDocumentScrollLeft();
+                }
+
+				if (browser == 'Internet Explorer') {
+					x = 0;
+				}
+                y = 2 + $D.getDocumentScrollTop();
+
+                this.cfg.setProperty("xy", [parseInt(x, 10), parseInt(y, 10)]);
+                this.cfg.refireEvent("iframe");
+            };
+        }
+        disableAnonymousMarkingPanel.render(document.body);
+        disableAnonymousMarkingPanel.hideEvent.subscribe(function () { $('anonymous_error').innerHTML = ''; }, false);
+        disableAnonymousMarkingPanel.hide();
+        Element.show($('disable_anonymous_marking'));
+    }
+}
+
+function disableAM (data) {
+    $('anonymous_title').innerHTML = data.title;
+    document.disable_anonymous_marking_form.objectid.value = data.oid;
+    disableAnonymousMarkingPanel.show();
+}
+
+function checkDisableAM () {
+    var form = document.disable_anonymous_marking_form;
+    if (form.reason.value.length <= 5) {
+        $('anonymous_error').innerHTML = "Please provide a reason for turning anonymous marking off.";
+    }
+    else {
+        form.submit();
+    }
+    return;
+}
+
+YAHOO.util.Event.onDOMReady(initAnonymousMarking);
+
+</script>
+
+<div id="disable_anonymous_marking" class="app" style="display: none;">
+<div class="anonymous_frames">
+<form method="post" name="disable_anonymous_marking_form">
+    <input type="hidden" name="objectid" value=""/>
+    <input type="hidden" name="disable_anonymous_marking" value="1"/> 
+    <div class="anonymous_header">
+    	<h1>turn off anonymous marking</h1>
+		<p>Please state reason for turning off Anonymous Marking for: <span id="anonymous_title"></span><br />
+			<strong>Warning: Administrator has access to this information. This setting is permanent.</strong>
+        
+            </p>
+        
+    </div>
+    <div class="anonymous_body">
+        <textarea name="reason" cols="30" rows="3"></textarea>
+        <p id="anonymous_error"></p>
+    </div>
+    <div class="anonymous_footer">
+		<div class="anonymous_footer_buttons">
+    		<span class="submit_form_button"><input type="button" onClick="checkDisableAM();" value="submit"></span><br>
+        	<span class="submit_form_button"><input type="button" value="Cancel" onClick="disableAnonymousMarkingPanel.hide();"></span>
+		</div>
+    </div>
+</form>
+</div>
+</div>
+<div id="actions">
+<p>This is a preview of the print version of your report. Please click "print" to continue or "done" to close this window.</p>
+<script type="text/javascript" language="javascript">
+	var browserName=navigator.appName;
+	var browserVer=parseInt(navigator.appVersion);
+	if ((navigator.appVersion.indexOf("Mac")!=-1) && (browserName == "Microsoft Internet Explorer")) {
+		document.write('<span class="AR10">Type COMMAND-P to print.</span><br><br>');
+	} else {
+		document.write('<a href="javascript:window.print();">print</a>&nbsp;&nbsp;');
+	}
+</script>
+<a href="javascript:window.close();">done</a>
+</div>
+
+
+<!-- ########################### Preferences pop-up ##########################--> 
+<div id="prefs" style="visibility:hidden">
+<div class="padding">
+<form name="prefs_form" method="post" accept-charset="utf-8">
+<script type="text/javascript" language="javascript">
+function savePrefs(){
+	if (document.prefs_form.changed.value == 1){
+		document.prefs_form.submit();
+	}else{
+        hidePrefsPane();
+	}
+}
+
+function showPrefsPane(){
+    document.getElementById('prefs').style.visibility='visible';
+    document.getElementById('use_colors').focus();
+}
+
+function hidePrefsPane(){
+    document.getElementById('prefs').style.visibility='hidden';
+    document.getElementById('prefs_link').focus();
+}
+
+
+var overlay;
+function showSmallMatchExclusions() {
+    var linkRegion = $D.getRegion('exclude_small_matches_link');
+    var panelRegion = $D.getRegion('small_matches_prefs');
+    var indexRegion = $D.getRegion('index');
+    
+    var topLocation = indexRegion.bottom;
+    $D.setStyle('small_matches_prefs', 'top', topLocation + 'px');
+    $D.setStyle('small_matches_prefs', 'left', linkRegion.left + 'px');
+    
+    $D.setStyle('small_matches_prefs', 'visibility', 'visible');
+
+    // focus the field
+    $D.hasClass('exclude_by_percent_row', 'selected') ? $('exclude_by_percent_value').focus() : $('exclude_by_words_value').focus();
+}
+
+function hideSmallMatchExclusions() {
+    $D.setStyle('small_matches_prefs', 'visibility', 'hidden');
+}
+
+function selectSmallExclusionMethod(enableType) {
+    if(enableType == 'words') {
+        $('exclude_by_words_value').focus();
+        
+        $D.addClass('exclude_by_words_row', 'selected');
+        $D.removeClass('exclude_by_percent_row', 'selected');
+        $D.removeClass('exclude_by_words_row', 'disabled');
+        $D.addClass('exclude_by_percent_row', 'disabled');
+    }
+    else {
+        $('exclude_by_percent_value').focus();
+        
+        $D.removeClass('exclude_by_words_row', 'selected');
+        $D.addClass('exclude_by_percent_row', 'selected');
+        $D.addClass('exclude_by_words_row', 'disabled');
+        $D.removeClass('exclude_by_percent_row', 'disabled');
+    }
+}
+
+function updateExcludePercentage(wordCount) {
+    var percent = Math.floor(wordCount / 3336 * 100);
+    
+    $('exclude_by_percent_value').value = percent;
+}
+
+function updateExcludeWordCount(percent) {
+    var wordCount = Math.floor((percent/100) * 3336);
+    
+    $('exclude_by_words_value').value = wordCount;
+}
+
+function submitSmallMatchesChange() {
+    var excludeBy = $D.hasClass('exclude_by_percent_row', 'selected') ? 'percent' : 'words';
+    var excludeValue = excludeBy == 'percent' ? $('exclude_by_percent_value').value : $('exclude_by_words_value').value;
+    
+    changeSmallMatchExclusion(excludeBy, parseInt(excludeValue), 3336);
+}
+
+</script>
+</script>
+<input type="hidden" name="changed" value="0">
+        <div class="pref_rows">
+                <label for="use_colors">color-code matches:</label>
+                <select id="use_colors" name="use_colors" onchange="document.prefs_form.changed.value=1">
+                    <option value="1">yes
+                    <option value="0" selected>no
+                </select>
+                <div class="clear"></div>
+        </div>
+        <div class="pref_rows">
+                <label for="def_report_mode">default mode:</label>
+                <select id="def_report_mode" name="def_report_mode" onchange="document.prefs_form.changed.value=1">
+                    <option value="0">show highest matches together
+                    <option value="1">show matches one at a time
+                    <option value="2">quickview (classic) report
+                </select>
+                <div class="clear"></div>
+        </div>
+        <div class="pref_rows">
+                <label for="report_scrolling">auto-navigation:</label>
+                <select id="report_scrolling" name="report_scrolling" onchange="document.prefs_form.changed.value=1">
+                    <option value="0">jump to next match
+                    <option value="1">scroll to next match
+                </select>
+                <div class="clear"></div>
+        </div>
+        
+        <div id="prefs_confirm">
+            <button onClick="savePrefs()" >Save</button>  
+         <a href="javascript:void(0);" onClick="hidePrefsPane();">Cancel</a>
+        </div>
+</form>
+</div>
+</div>
+<!-- ########################### END Preferences pop-up  ##########################--> 
+
+<!-- ########################### BEGIN small matches pop-up  ##########################--> 
+<div id="small_matches_prefs">
+    <form onsubmit="submitSmallMatchesChange(); return false;">
+        <ul>
+            <li id="exclude_by_words_row" class="selected">
+                <label for="exclude_by_words_value">Word Count: </label>
+                <input type="text" id="exclude_by_words_value" size="3" value="" onkeyup="updateExcludePercentage(this.value)" onfocus="selectSmallExclusionMethod('words')"> words
+            </li>
+            <li id="exclude_by_percent_row" class="disabled">
+                <label for="exclude_by_percent_value">Percentage: </label>
+                <input type="text" id="exclude_by_percent_value" size="3" value="" max-length="3" onkeyup="updateExcludeWordCount(this.value)" onfocus="selectSmallExclusionMethod('percent')"> %
+            </li>
+        </ul>
+        <p><input type='submit' value="submit"> or <a href="javascript:hideSmallMatchExclusions()">Cancel</a></p>
+    </form>
+</div>
+
+<!-- ########################### END small matches pop-up  ##########################-->
+
+<!-- ########################### Top of Report  ##########################--> 
+<div id="top">
+    <div id="content">
+    
+        <!-- ######### Top Bar  ##########################--> 
+        <div id="top_bar">
+                <ul id="top_bar_list1">
+                      <!-- Preferences --><li><a id="prefs_link" href="javascript:showPrefsPane();">preferences</a></li> 
+                </ul>
+                <ul id="top_bar_list2">
+                      
+                </ul>
+                <div class="clear"></div>
+        </div>   
+        <!-- ######### END Top Bar  ##########################--> 
+        
+        
+        <!-- ######### Top Body  ##########################--> 
+        <div id="top_body">
+        
+            <div id="print_wrapper">
+                <div class="general_info">
+                    <!-- Logo --> 
+                    <h2>
+                        <span class=""></span>
+                        <strong>Turnitin</strong>
+                        <em>Originality Report</em>
+                     </h2>
+                 
+                     <!-- Paper Info -->               
+                     <ul>
+                         <li>Processed on: 05-Nov-2019  4:10 AM PST</li>
+                         <li>ID: 1207471878 </li>
+                         <li>Word Count: 3336</li>
+                         <li>Submitted: 2</li>
+                     </ul>
+                </div>
+
+                 <!-- Paper Title --> 
+                <h3>
+                    <strong>302CEM_19A_Phoenix_GroupTechnicalReport</strong> 
+                    
+                    <em>By Student User</em>
+                    
+                </h3>
+            </div>
+            
+            <div id="similarity_print_wrapper">
+                <div class="similarity_box">
+                    <div class="overall_similarity">
+                        <div class="color_box green">&nbsp;</div>
+                        <div class="similarity_title">Similarity Index</div>
+                        <div class="similarity_percent">3%</div>
+                    </div>
+                    <div class="similarity_by_source">
+                        <div class="similarity_title">Similarity by Source</div>
+                        <dl>
+                            <dt>Internet&nbsp;Sources:</dt>
+                            <dd>1%</dd>
+                            <div class="clear"></div>
+                            <dt>Publications:</dt>
+                            <dd>0%</dd>
+                            <div class="clear"></div>
+                            <dt>Student&nbsp;Papers:</dt>
+                            <dd>3%</dd>
+                            <div class="clear"></div>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+                                 
+        </div>
+        <!-- ######### END Top Body  ##########################--> 
+        
+        
+    </div>
+</div>
+<!-- ########################### END Top of Report  ##########################--> 
+
+
+
+<!-- ########################### TOOLBAR  ##########################--> 
+<div id="index">
+	<div id="toolbar_wrapper">
+        
+	</div>
+</div>
+<!-- ########################### END TOOLBAR  ##########################--> 
+
+
+<div class="links">
+	<div>
+	<p>1% match (student papers from 26-Oct-2019)</p>
+
+    <p>Class: STWA300CW-Writing Skills-Jan2019 (Moodle TT)</p>
+    <p>Assignment: Academic writing assignment Part 1 (Moodle TT)</p>
+	<p>Paper ID: <a href="/paperInfo.asp?r=27.8573041967576&svr=27&session-id=92b501bfc4d0a7f9bbb86093dbe63b7b&lang=en_us&oid=oid:1:1631936961&perc=1" target="_blank" style="color:red">1200627316</a></p>
+
+
+	</div>
+	<div>
+	<p>1% match (student papers from 20-Jul-2018)</p>
+
+	<p><a href="javascript:openDSC(91334619,2,'0')" target="_blank" style="color:green">Submitted to Softwarica College of IT & E-Commerce on 2018-07-20</a></p>
+
+
+	</div>
+	<div>
+	<p>< 1% match (student papers from 28-Apr-2018)</p>
+
+	<p><a href="javascript:openDSC(87746056,2,'0')" target="_blank" style="color:blue">Submitted to Coventry University on 2018-04-28</a></p>
+
+
+	</div>
+	<div>
+	<p>< 1% match (student papers from 23-Apr-2019)</p>
+
+	<p><a href="javascript:openDSC(598964975,2,'0')" target="_blank" style="color:brown">Submitted to Coventry University on 2019-04-23</a></p>
+
+
+	</div>
+</div>
+<div id="body" tabIndex="0">
+<p>STW302CEM Group Work Technical Report Authored by Team Phoenix: Sushan Tha Shrestha [9638073] Netra Dahal [9636138] Biju Ale [9638350] Romisha Thapa [9637412] <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 1 in source list: Submitted to Softwarica College Of IT & E-Commerce on 2019-10-26"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=27.8573041967576&svr=27&session-id=92b501bfc4d0a7f9bbb86093dbe63b7b&lang=en_us&oid=oid:1:1631936961&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:red" class="red">Assignment report submitted for the partial fulfilment of BSc (Hons) Computing degree. Module Title Module Code Course Title Course Code Submission Date Submitted To</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> Agile Development STW302CEM <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 1 in source list: Submitted to Softwarica College Of IT & E-Commerce on 2019-10-26"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=27.8573041967576&svr=27&session-id=92b501bfc4d0a7f9bbb86093dbe63b7b&lang=en_us&oid=oid:1:1631936961&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:red" class="red">BSc (Hons) Computing EECU033</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> 04 Nov, <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 1 in source list: Submitted to Softwarica College Of IT & E-Commerce on 2019-10-26"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=27.8573041967576&svr=27&session-id=92b501bfc4d0a7f9bbb86093dbe63b7b&lang=en_us&oid=oid:1:1631936961&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:red" class="red">2019</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> Sudeep Bajimaya <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 1 in source list: Submitted to Softwarica College Of IT & E-Commerce on 2019-10-26"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=27.8573041967576&svr=27&session-id=92b501bfc4d0a7f9bbb86093dbe63b7b&lang=en_us&oid=oid:1:1631936961&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:red" class="red">(Module</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> Leader) <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 1 in source list: Submitted to Softwarica College Of IT & E-Commerce on 2019-10-26"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=27.8573041967576&svr=27&session-id=92b501bfc4d0a7f9bbb86093dbe63b7b&lang=en_us&oid=oid:1:1631936961&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:red" class="red">Faculty of Engineering, Environment and Computing School of Computing, Electronics and Mathematics Coventry University Contents 1</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> Version Control 3 1.1 Collaborative Development . . . . . . . . . . . . . . . . . . . . . 3 2 Analysis of Workflows 3 2.1 Centralized Workflow . . . . . . . . . . . . . . . . . . . . . . . . . 4 2.2 Feature-branch workflow . . . . . . . . . . . . . . . . . . . . . . . 5 2.3 P2P(peer-to-peer) or Forking Workflow . . . . . . . . . . . . . . 6 2.4 Maintainer or Integration Manager Workflow . . . . . . . . . . . 7 2.5 Hierarchical or Dictator-Lieutenants Workflow . . . . . . . . . . 8 3 Automated Testing 8 3.1 Performing Unit-Test . . . . . . . . . . . . . . . . . . . . . . . . . 8 3.2 Performing Functional Tests . . . . . . . . . . . . . . . . . . . . . 9 3.3 Test-Driven Development . . . . . . . . . . . . . . . . . . . . . . 9 3.3.1 Advantages of TDD . . . . . . . . . . . . . . . . . . . . . 10 3.4 Acceptance Testing . . . . . . . . . . . . . . . . . . . . . . . . . . 11 3.5 Automated Tests and Integration . . . . . . . . . . . . . . . . . . 11 References 12 4 Appendix 4.1 4.2 4.3 Test Scripts: Unit Testing (Backend/API) . . . . . . . . . . . . . Test Result: Unit Testing (Backend/API) . . . . . . . . . . . . . Test Scripts: Functional Testing (Frontend) . . . . . . . . . . . . 13 13 16 18 List of Figures 1 Logos of a prominent distributed VCS - Git and its repo - GitHub. 3 2 Centralized workflow (Atlassian Corporation Plc 2019). . . . . . 4 3 . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 4 4 Our team’s preferred Feature-branch Workflow . . . . . . . . . . 5 5 Example of Feature-branch workflow (O’Reilly Media, Inc. 2019). 5 6 Forking Workflow Model. . . . . . . . . . . . . . . . . . . . . . . 6 7 Maintainer Workflow Model (Git SCM 2019). . . . . . . . . . . . 7 8 Hierarchical Workflow Model (Git SCM 2019). . . . . . . . . . . 8 9 TDD example: Unit Test without the Code. . . . . . . . . . . . . 10 10 Unit Test - Product Creation API . . . . . . . . . . . . . . . . . 13 11 Unit Test - Product Deletion API . . . . . . . . . . . . . . . . . . 14 12 Unit Test - Product Retrieval API . . . . . . . . . . . . . . . . . 14 13 Unit Test - Product Updation API . . . . . . . . . . . . . . . . . 15 14 Unit Test - Product Image Upload API . . . . . . . . . . . . . . 15 15 Unit Test Result 1 of 4 . . . . . . . . . . . . . . . . . . . . . . . . 16 16 Unit Test Result 2 of 4 . . . . . . . . . . . . . . . . . . . . . . . . 16 17 Unit Test Result 3 of 4 . . . . . . . . . . . . . . . . . . . . . . . . 17 18 Unit Test Result 4 of 4 . . . . . . . . . . . . . . . . . . . . . . . . 18 19 Functional Test - User Registration 1 of 2 . . . . . . . . . . . . . 18 20 Functional Test - User Registration 2 of 2 . . . . . . . . . . . . . 19 21 Functional Test - User Login . . . . . . . . . . . . . . . . . . . . 19 1 22 Functional Test - User Login (private method) . . . . . . . . . . 23 Functional Test - List Products . . . . . . . . . . . . . . . . . . . 24 Functional Test - View Single Product . . . . . . . . . . . . . . . 25 Functional Test - Add Product to Cart . . . . . . . . . . . . . . . 26 Functional Test - Remove Product from Cart . . . . . . . . . . . 27 Functional Test - View Order Summary . . . . . . . . . . . . . . 28 Functional Test - Update User Cart . . . . . . . . . . . . . . . . 29 Functional Test - Admin Test Case Setup . . . . . . . . . . . . . 30 Functional Test - Admin Login . . . . . . . . . . . . . . . . . . . 31 Functional Test - Admin Login(Private Method) . . . . . . . . . 32 Functional Test - (Admin) Add Product . . . . . . . . . . . . . . 33 Functional Test - (Admin) Update Product . . . . . . . . . . . . 34 Functional Test - (Admin) Delete Product . . . . . . . . . . . . . 35 Functional Test - (Admin) View Orders . . . . . . . . . . . . . . 36 Functional Test - (Admin) Change Password . . . . . . . . . . . 37 Functional Test - (Admin) Logout . . . . . . . . . . . . . . . . . 38 Functional Test Results (Selenium) . . . . . . . . . . . . . . . . . 20 20 20 20 21 21 21 21 22 22 23 24 24 25 25 25 26 2 1 Version Control There can be an assortment of ‘levels of engagement’ with a version control system (Narębski 2016: 28). Among them, we have employed Git, the well established, version control system for our project for three pur- poses. (1) For collaborative development. (2) For change monitoring. And (3) For archae- ology. 1.1 Collaborative Development Figure 1: Logos of a prominent distributed VCS - Git and its Git enables efficient concurrent work among repo - GitHub. team members on a common piece of software. In our case, 4 members sub- scribed to the same repository in GitHub as ‘remote repo’. Their local code-base would be shared among each other and the versions of it shared on the remote. In addition, in a feature-branch workflow employed by our team, each subscriber creates a new branch from the master branch to work on a feature (Laster 2017: 54), which is merged after completion back to the master branch. While work- ing with multiple collaborators, version control systems like Git ensures that the changes made between the shared common files do not conflict with each other. 2 Analysis of Workflows Collaborative development assumes one of many available workflows. In any given project, there may be few, or many developers. There may be a project maintainer, or if the project is large, there can even be many subsystem main- tainers. In other cases, one might work in a tight but efficient team. And in many cases, one might prefer convenience for an external collaborator to pro- pose changes such as bug-fixes, or refactors (Narębski 2016: 27). These are various scenarios that call for the selection of a git <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 3 in source list: Submitted to Coventry University on 2018-04-28"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=27.8573041967576&svr=27&session-id=92b501bfc4d0a7f9bbb86093dbe63b7b&lang=en_us&oid=oid:2:87746056&perc=0', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:blue" class="blue">workflow: 1. Centralized Workflow 2. Feature-branch Workflow 3.</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> P2P(peer-to-peer) or Forking Workflow 4. Maintainer or Integration Manager Workflow 5. Hierarchical or Dictator-Lieutenants Workflow 3 2.1 Centralized Workflow Among the two types of repositories: (1) Bare and (2) Non-bare. The former is used for syn- chronizing development outputs among mul- tiple collaborators while the later is used for solo development for persisting newer his- tories (Loeliger and McCullough 2012: 31). Moreover, bare repositories contain no work- ing directory but the innards of git whereas the regular non-bare repositories contain both the git files and the working repositories from where the changes are loaded to the staging area. In git, the command to create bare Figure 2: Centralized work- repository is: ‘git init –bare project.git’ flow (Atlassian Corporation Plc The centralized workflow contains one 2019). bare repository. Here, each technical mem- ber possesses his/her clone of the central repository, used to develop revisions of the software. Once the revision is ready, the member pushes the changes to the central repo, hence integration is distributed. Centralized workflow has the following advantages and disadvantages. • The foremost advantage of this workflow is simplicity. It is simple to set up and familiar to developers with prior experience in the centralized version control systems. It also provides centralized backup and security in the form of access control. This might be a good choice for a private project with a few members. • The major disadvantage here is the single domain of failure shared by all collaborators. If there is a problem with the main trunk then there is no way to resolve it by synchronization (Narębski 2016). And each developer making changes available for others might require updating one’s own repo first and then merging other’s changes. Another issue with this workflow is the assumption that all members are trustworthy with access to the central repo. Figure 3 The Apache Subversion or SVN is a popular centralized based VCS (Apache 2019). Git, on the other hand, is a prominent distributed-version control system and allows varying degrees of distribution models for collaboration (Santacroce 2017). 4 2.2 Feature-branch workflow Figure 4: Our team’s preferred Feature-branch Workflow Our project uses git over svn for the reason that git enables distributed workflow and seamlessly integrates the feature-branch workflow seamlessly. The main idea with Feature-branch workflow is a separation of feature development onto individual self-sustained branches (Atlassian Corporation Plc 2019), as shown below in figure 5.Following are advantages and disadvantages. Figure 5: Example of Feature-branch workflow (O’Reilly Media, Inc. 2019). • This encapsulation keeps the main codebase or the master branch unper- turbed by unintended changes. This ensures the master branch is always free of broken-code. <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 4 in source list: Submitted to Coventry University on 2019-04-23"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=27.8573041967576&svr=27&session-id=92b501bfc4d0a7f9bbb86093dbe63b7b&lang=en_us&oid=oid:2:598964975&perc=0', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:brown" class="brown">This is the</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> main advantage <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 4 in source list: Submitted to Coventry University on 2019-04-23"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=27.8573041967576&svr=27&session-id=92b501bfc4d0a7f9bbb86093dbe63b7b&lang=en_us&oid=oid:2:598964975&perc=0', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:brown" class="brown">of the feature branch workflow</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> (Geisshirt et al. 2018: 74). • Another advantage is the stimulation of feedback among developers be leveraging the pull requests (Atlassian Corporation Plc 2019; O’Reilly Media, Inc. 2019). They give the chance to refactor and finalize a feature before it gets integrated into the main software. If one wants help with a 5 specific feature, then a pull request can be generated which notifies other members to respond. • Feature-branch also allows targetted testing (O’Reilly Media, Inc. 2019) which means each feature can be tested without cascading the effects onto other features which are marked as working correctly. The cons of this workflow is not so significant as the benefits outweigh them. However there are minor disadvantages such as: • Merging binary files, and images can be difficult to achieve with some version control systems, which can be time-consuming (Loeliger and Mc- Cullough 2012: 121). • If a developer wants to add to the published feature branch, he or she may want to first merge the feature to their current branch, or wait until it is merged to the main branch. So, there may be a possibility that the other branch can go out-of-date. 2.3 P2P(peer-to-peer) or Forking Workflow The inverse of a centralized workflow is the peer-to-peer or what is commonly known as the forking workflow (Narębski 2016: 129). As shown in figure 6 below, each member has a public bare repository in addition to the private working repository that is non-bare and contains the working directory. Figure 6: Forking Workflow Model. The changes that developers make are pushed to their own public reposito- ries. To merge the changes from others, one requires to to fetch from other’s public repositories. The advantages and disadvantages of this workflow are given below. • There is no need for central repository to incorporate the changes; it is a complete distributed workflow.Likewise, developers are not complied to integrate at a specific time; one can merge at one’s leisure time. Narebskii notes that this workflow is suited best for organic team requiring little setup (Narębski 2016: 129). • The disadvantage is the absence of ‘canonical’ or official versions, a cen- tralized management, and the requirement for developers to track multiple repositories (Narębski 2016: 129). The setup needs to be such that each 6 workstation can talk to each other which is challenging in terms of net- working, relative to the easy setup of centralized workflow. Also, as the size of the team grows, the collaboration and network is made more com- plicated. This is also visible in figure 6 shown above. 2.4 Maintainer or Integration Manager Workflow Figure 7: Maintainer Workflow Model (Git SCM 2019). As discussed above, the P2P workflow lacked canonical version of a project, that could be used by-non-developers (Narębski 2016: 129). Another con was that each developers were responsible for their own integration. The maintainer workflow is designed to mitigate these issues with the P2P workflow. If we extend the P2P workflow by promoting one of the public repositories as ‘canonical’ or official, and assign one of the developers in the team as a integration manager, then we achieve the maintainer workflow. For this, reason, maintainer workflows are also known as integration manager workflow (Laster 2017; Santacroce 2017). In this workflow, after the developer pushes his changes to his public repos- itory, he notifies the maintainer regarding his changes via a pull request. The maintainer, then pulls the changes into his working directory and finally pushes the merged changes to the canonical repository for everyone to realize the changes. • The advantage of this workflow is the availability of an official version of the codebase. And thus, the developer need not wait for integration as the maintainer is responsible for pulling their changes. This workflow is best suited for open-source projects which comprises of large team. Since social consensus decides the maintainer, there is an easy switch temporarily or permanently i.e. forking of a project. • The major disadvantage of this workflow is that the maintainer can be the bottleneck to the project since he is solely responsible for integration management (Narębski 2016: 131). Therefore, for a very large project with huge organic team around the globe, such as Linux kernel development this workflow is not suitable. Rather, hierarchical workflow is preferred. 7 2.5 Hierarchical or Dictator-Lieutenants Workflow Figure 8: Hierarchical Workflow Model (Git SCM 2019). The hierarchical workflow is the extension of the maintainer workflow, generally employed by huge projects comprising of hundreds of distributed collaborators. Unlike the maintainer workflow, here there are multiple integration managers. The main maintainer is aided by other assistant maintainers who are responsi- ble for managing subsystems. These maintainers are known as the ‘lieutenants’. And the main maintainer is called the ‘benevolent dictator’. As shown in figure 8, the benevolent dictator’s public repository called the ‘blessed repository’ is pulled by both the developers and the subsystem maintainers, resulting in a hierarchy or network of repositories. Respective lieutenants are sent changes by their developers who first pull the updates from the blessed repository. Lieu- tenants merge the changes in their respective responsibility domains. The dic- tator who is the master maintainer pulls from the lieutenants and sometimes directly from developers too. The dictator then pushes the merged changes to the blessed repository. The pros and cons of this workflow are the following. • This workflow is best suited for huge collaborative project such as the Linux kernel development. The advantage is that the dictator or the master maintainer or leader can delegate integration workload, which is useful for hierarchical projects with many subsystems or modules. • The disadvantage of this workflow is complexity. If it is applied to the simple projects then, it can be unnecessarily complicated to manage. 3 Automated Testing 3.1 Performing Unit-Test Django REST framework was used to develop the back-end of the project. Test- ing Django REST views and testing the regular Django views are different. Following test classes are provided by the Django REST framework • APISimpleTestCase • APITransactionTestCase • APITestCase 8 • APILiveServerTestCase These test case classes implement the common interface available in Django’s TestCase class. However, instead of Django’s client they, use the HTTP client to specifically test the API views. As a result, JSON format is specified during im- plementation when testing API client requests, for example, as in self.client.post(url, data, format = ‘json’ All these classes down the line, implement the standard python library ‘unittest’ a JUnit inspired testing framework which has a familiar flavour from major unit testing frameworks in other languages. Therefore the comparative testing of the assertion of expected value was the basic style in writing the unit-tests (Django Software Foundation 2019). 3.2 Performing Functional Tests As we build our methods driven by unit-tests, we would want to test higher sets of features or functions that are comprised of these smaller methods. These smaller units are tested by the APITestCase described above. For testing the higher units of functions such as user registration and CRUD operations with renderings of form elements and events, we have used the Selenium framework. Selenium is a browser automation tool used largely for functional testing web applications. It supports a variety of languages such as Python across various web-browsers and operating systems (Zhimin 2018: 17). In order to create automated functional suites and tests for our project, we have used the Selenium WebDriver, which is a collection of programming language-specific bindings to drive a web browser. 3.3 Test-Driven Development The functional and unit test implementation discussed above were done in a TDD approach which is the basis for Agile testing strategies. The unit tests were written first. The test was executed in the absence of the respective code base. As the test fails, the code was supplied to pass the test. Similarly, with the front end, Selenium was used to drive the HTML templating in Django. Front end tests were written first. 9 Figure 9: TDD example: Unit Test without the Code. As highlighted in figure 9 abvove, the test requires model of Product to be created along with the attributes. Without supplying the model, this test would not pass. Therefore to pass the test, Product model was created after the failed test. In this manner, all unit were written to drive the source code. 3.3.1 Advantages of TDD In TDD, the testing is the actual coding. And the source code is a product of the testing being conducted (Beck 2003). By making testing the aim of the project, we are performing test-driven development. TDD has following advantages (Percival 2017). • As the application takes forms and evolves, the testing is simultaneously performed while covering all the features of the software, without the need for assigning explicit timeblock for testing. • Gives the opportunity to introduce developers engage in pair-programming, and ping-pong programming. • Ensures all parts of the codebase are covered without leaving behind any holes or missed functionalities. 10 • It is the basis for behavior driven TDD which ensures that the software behaves as intended by the user. • Fail early and fail fast principle in TDD allows developers to pick up bugs in their code as they are being generated rather than having to discover accumulated errors during the integration phase. • TDD resolves the problem of gold-plating - the silent build-up of unspec- ified features and functionalities. 3.4 Acceptance Testing 3.5 Automated Tests and Integration Python Paver and Jenkins were the tools chosen be used to automate tests and build. Paver can be used to automate the test scripts. And Jenkins can execute them at every check-ins. We can also gain instant feedback regarding our test execution status. Jenkins can not only automate build process but also generate statistics and graphs for each build connecting it with PyLint Report. Although these tools were chosen at first, we were unable to implement them in our project as much of our time were spent tp resolve technical issues and team issues. We had to learn most of the tools used in our project as they were new to us. Thus continuous integration was done manually by regularly pulling the master branch and building the codebase. • 11 References Apache (2019). Apache Subversion. url: https://subversion.apache.org/ [2 October 2019]. Atlassian Corporation Plc (2019). Git Feature Branch Workflow | Atlassian Git Tutorial. url: https://www.atlassian.com/git/tutorials/comparing- workflows/feature-branch-workflow [3 October 2019]. Beck, Kent (2003). Test-driven development: by example. Boston: Addison-Wesley. Django Software Foundation (2019). unittest — Unit testing framework — Python 3.8.0 documentation. url: https : / / docs . python . org / 3 / library / unittest.html [5 September 2019]. Geisshirt, Kenneth et al. (2018). Git Version Control Cookbook. Birmingham, UK: Packt Publishing. Git SCM (2019). Git - Distributed Workflows. url: https://git-scm.com/ book/en/v2/Distributed-Git-Distributed-Workflows [2 October 2019]. Laster, Brent (2017). Professional Git. Indianapolis, Indiana: John Wiley & Sons. Loeliger, Jon and Matthew McCullough (2012). Version Control with Git. 2nd edition. Beijing: O’Reilly. Narębski, Jakub (2016). Mastering Git. Birmingham, UK: Packt Publishing Ltd. O’Reilly Media, Inc. (2019). Feature Branch Workflow. url: https://www. oreilly.com/library/view/git-essentials-/9781787120723/b9b6d860- ad8c-4b41-affb-94662149f3fa.xhtml [4 August 2019]. Percival, Harry (2017). Test-driven development with Python. Second edition. Sebastopol, CA: O’Reilly Media. Santacroce, Ferdinando (2017). Git Essentials. Birmingham, UK: PACKT Pub- lishing Ltd. Zhimin, Zhan (2018). Selenium WebDriver Recipes in Python. British Columbia, Canada: Leanpub. 12 4 Appendix 4.1 Test Scripts: Unit Testing (Backend/API) Figure 10: Unit Test - Product Creation API 13 Figure 11: Unit Test - Product Deletion API Figure 12: Unit Test - Product Retrieval API 14 Figure 13: Unit Test - Product Updation API Figure 14: Unit Test - Product Image Upload API 15 4.2 Test Result: Unit Testing (Backend/API) Figure 15: Unit Test Result 1 of 4 Figure 16: Unit Test Result 2 of 4 16 Figure 17: Unit Test Result 3 of 4 17 Figure 18: Unit Test Result 4 of 4 4.3 Test Scripts: Functional Testing (Frontend) Figure 19: Functional Test - User Registration 1 of 2 18 Figure 20: Functional Test - User Registration 2 of 2 <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 2 in source list: Submitted to Softwarica College of IT & E-Commerce on 2018-07-20"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=27.8573041967576&svr=27&session-id=92b501bfc4d0a7f9bbb86093dbe63b7b&lang=en_us&oid=oid:2:91334619&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:green" class="green">Figure 21: Functional Test</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> - User Login 19 <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 2 in source list: Submitted to Softwarica College of IT & E-Commerce on 2018-07-20"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=27.8573041967576&svr=27&session-id=92b501bfc4d0a7f9bbb86093dbe63b7b&lang=en_us&oid=oid:2:91334619&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:green" class="green">Figure 22: Functional Test</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> - User Login (private method) <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 2 in source list: Submitted to Softwarica College of IT & E-Commerce on 2018-07-20"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=27.8573041967576&svr=27&session-id=92b501bfc4d0a7f9bbb86093dbe63b7b&lang=en_us&oid=oid:2:91334619&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:green" class="green">Figure 23: Functional Test</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> - List Products <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 2 in source list: Submitted to Softwarica College of IT & E-Commerce on 2018-07-20"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=27.8573041967576&svr=27&session-id=92b501bfc4d0a7f9bbb86093dbe63b7b&lang=en_us&oid=oid:2:91334619&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:green" class="green">Figure 24: Functional Test</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> - View Single Product Figure 25: Functional Test - Add Product to Cart 20 Figure 26: Functional Test - Remove Product from Cart Figure 27: Functional Test - View Order Summary Figure 28: Functional Test - Update User Cart Figure 29: Functional Test - Admin Test Case Setup 21 <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 2 in source list: Submitted to Softwarica College of IT & E-Commerce on 2018-07-20"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=27.8573041967576&svr=27&session-id=92b501bfc4d0a7f9bbb86093dbe63b7b&lang=en_us&oid=oid:2:91334619&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:green" class="green">Figure 30: Functional Test</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> - Admin Login <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 2 in source list: Submitted to Softwarica College of IT & E-Commerce on 2018-07-20"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=27.8573041967576&svr=27&session-id=92b501bfc4d0a7f9bbb86093dbe63b7b&lang=en_us&oid=oid:2:91334619&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:green" class="green">Figure 31: Functional Test</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> - Admin Login(Private Method) 22 Figure 32: Functional Test - (Admin) Add Product 23 Figure 33: Functional Test - (Admin) Update Product Figure 34: Functional Test - (Admin) Delete Product 24 Figure 35: Functional Test - (Admin) View Orders Figure 36: Functional Test - (Admin) Change Password Figure 37: Functional Test - (Admin) Logout 25 Figure 38: Functional Test Results (Selenium) 26 </p>
+</div>
+</body>
+</html>

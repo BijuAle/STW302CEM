@@ -1,0 +1,924 @@
+
+	
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!--[if lt IE 7]>  <html lang="en-us" class="ie ie6 lte9 lte8 lte7"> <![endif]-->
+<!--[if IE 7]>     <html lang="en-us" class="ie ie7 lte9 lte8 lte7"> <![endif]-->
+<!--[if IE 8]>     <html lang="en-us" class="ie ie8 lte9 lte8"> <![endif]-->
+<!--[if IE 9]>     <html lang="en-us" class="ie ie9 lte9"> <![endif]-->
+<!--[if gt IE 9]>  <html lang="en-us"> <![endif]-->
+<!--[if !IE]><!--> <html lang="en-us">             <!--<![endif]-->
+
+<meta http-equiv="X-UA-Compatible" content="IE=7" />
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="author" content="Turnitin, LLC" />
+    <meta name="keywords" content="" /> 
+    <meta name="description" content="" />
+<title>Turnitin</title>
+
+<base href="http://api.turnitin.com">
+<style type="text/css">
+body	{
+	color: #333;
+	background: #C0C7CC;
+	padding: 0;
+	border: 0;
+	font: 13px Verdana, arial, sans-serif;
+	margin: 0;
+	}
+	
+form	{
+	padding: 0;
+	margin: 0;
+	}
+	
+body#display	{
+	}
+	
+body#bodysource	{
+	width: 520px;
+	background: #F0F4FA;
+	}
+	
+p	{
+	padding: 10px 18px;
+	margin: 0;
+	}
+	
+img	{
+	border: 0;
+	padding: 0;
+	}
+
+div	{
+	padding: 0;
+	border: 0;
+	}
+	
+iframe	{
+	border: 0;
+	margin: 0;
+	padding: 0;
+	}
+	
+strong	{
+	font-weight: bold;
+	}
+	
+ul	{
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+	font-size: 13px;
+	}
+	
+ul li	{
+	padding: 0;
+	margin: 0;
+	line-height: 16px;
+	}
+	
+#index span#exclude	{
+	margin: 0 50px 0 23px;
+	}
+	
+#index a	{
+	font-size: 11px;
+	padding: 0 8px;
+	}
+	
+#index select	{
+	font-size: 12px;
+	border: 1px solid #888;
+	}
+	
+#index input.small	{
+	margin: 0 0 0 5px;
+	width: 30px;
+	color: red;
+	font-weight: bold;
+	font-size: 13px;
+	border: 1px solid #888;
+	vertical-align: baseline;
+	}
+		
+div.links	{
+	width: 85%;
+	margin: 0 auto;
+	border-left: 1px solid #888;
+	border-right: 1px solid #888;
+	padding-top: 8px;
+	background: #E8EEF7;
+	text-align: left;
+	}
+	
+.links div	{
+	padding: 5px 13px 10px 20px;
+	border-bottom: 1px dotted #888;
+	}
+	
+.links div p	{
+	padding: 2px 0 0 40px;
+	}
+	
+div#body	{
+	line-height: 17px;
+	width: 85%;
+	margin: auto;
+	padding: 20px 0;
+	background: #fff;
+	border-bottom: 1px solid #888;
+	border-right: 1px solid #888;
+	border-left: 1px solid #888;
+	text-align: left;
+	}
+	
+#body p	{
+	color: #000;
+	padding-top: 10 0;
+	margin: 0 40px;
+	}
+#actions {
+	display: none;
+	}
+
+a.exclude	{
+    float: right;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    bottom: 20px;
+    }
+
+/*= GENERAL 
+=== === === === === === === === === === === === === === === === === === === === === === === === === === === === === === */	
+
+body  #top_bar {
+display: none !important;
+}
+
+body #index #exclude,
+#download_button,
+#print_button,
+#index .right {
+display: inline-block;
+}
+
+body #index {
+width: 85%;
+margin-left: auto;
+margin-right: auto;
+border: 1px solid #999;
+background: #ececec url(new_dynamic/images/22bd7a01a025b8de122259e42762f0a7cb_ug_toolbar_bg.gif) repeat-x center left;
+}
+
+#toolbar_wrapper {
+padding-left:45px;
+}
+
+body #top {
+width: 85%;
+background-color: #FFF;
+margin-left: auto;
+margin-right: auto;
+border: 1px solid #999;
+border-bottom: none;
+height: 210px;
+}
+body #content {
+padding: 10px 60px;
+}
+body div#prefs {
+display: none;
+}
+
+body #top h2 {
+font-size: 20px;
+font-weight: normal;
+}
+
+body #top h2 strong {
+font-weight: normal;
+}
+body #top h2 em {
+font-style: normal;
+}
+
+
+body #top h3 {
+font-size: 16px;
+font-weight: normal;
+}
+
+body #top h3 strong {
+font-weight: normal;
+}
+body #top h3 em {
+font-style: normal;
+}
+
+        
+        body #top_body li	{/*Paper info li*/
+            padding:0;
+            margin: 0px 0px 2px 0px;
+            font-size: 10px;
+            }
+            
+            #top_body #print_wrapper {
+                float:left;
+                width: 50%;
+            }
+            
+            #top_body .similarity_print_wrapper {
+                width: 45%;
+                min-width: 283px;
+            }
+                
+            #top_body .similarity_box { /*Similiarity Box w/ Similarity by Source */
+                float: right;
+                border: solid 1px #666;
+                margin-top: 60px;
+                width: 350px;
+            }
+                #top_body .similarity_box .overall_similarity {
+                    float: left;
+                    border-right: solid 1px #666;
+                }
+                    #top_body .similarity_box .overall_similarity .color_box {
+                        font-size: 14px;
+                        width: 140px;
+                    }
+                        #top_body .color_box.green {
+                            background-color: green;
+                        }
+                        #top_body .color_box.blue {
+                            background-color: blue;
+                        }
+                        #top_body .color_box.yellow {
+                            background-color: yellow;
+                        }
+                        #top_body .color_box.orange {
+                            background-color: orange;
+                        }
+                        #top_body .color_box.red {
+                            background-color: red;
+                        }
+
+                    #top_body .similarity_box .overall_similarity .similarity_title {
+                        font-size: 13px;
+                        font-weight: normal;
+                        padding: 5px 0px 0px;
+                        text-align: center;
+                    }
+
+                    #top_body .similarity_box .overall_similarity .similarity_percent {
+                        font-size: 25px;
+                        font-family: georgia, times, serif;
+                        padding: 5px 0px 15px;
+                        text-align: center;
+                    }
+
+                    #top_body .similarity_box .overall_similarity a {
+                         display: none;
+                    }
+
+                #top_body .similarity_box .similarity_by_source {
+                     float: right;
+                     font-size: 10px;
+                }
+                    #top_body .similarity_box .similarity_by_source .similarity_title {
+                         padding: 6px 0px 0px 10px;
+                         font-weight: bold;
+                         text-align: left;
+                    }
+                    #top_body .similarity_box .similarity_by_source dl {
+                        padding-left: 10px;
+                        margin: 14px 7px 0px 0px;
+                    }
+                    #top_body .similarity_box .similarity_by_source dt {
+                         float: left;
+                         width: 160px;
+                    }
+                    #top_body .similarity_box .similarity_by_source dd {
+                        float: left;
+                        margin: 0px;
+                    }
+
+	
+		
+#index span#exclude	{
+	margin: 0 50px 0 23px;
+	}
+	
+#index a	{
+	font-size: 11px;
+	padding: 0 8px;
+	}
+	
+#index select	{
+	font-size: 12px;
+	border: 1px solid #888;
+	}
+	
+#index input.small	{
+	margin: 0 0 0 5px;
+	width: 30px;
+	color: red;
+	font-weight: bold;
+	font-size: 13px;
+	border: 1px solid #888;
+	vertical-align: baseline;
+	}
+		
+div.links	{
+	width: 85%;
+	margin: 0 auto;
+	border-left: 1px solid #888;
+	border-right: 1px solid #888;
+	padding-top: 8px;
+	background: #E8EEF7;
+	text-align: left;
+	}
+	
+.links div	{
+	padding: 5px 13px 10px 20px;
+	border-bottom: 1px dotted #888;
+	}
+	
+.links div p	{
+	padding: 2px 0 0 40px;
+	}
+	
+div#body	{
+	line-height: 17px;
+	width: 85%;
+	margin: auto;
+	padding: 20px 0;
+	background: #fff;
+	border-bottom: 1px solid #888;
+	border-right: 1px solid #888;
+	border-left: 1px solid #888;
+	text-align: left;
+	}
+	
+#body p	{
+	color: #000;
+	padding-top: 10 0;
+	margin: 0 40px;
+	}
+#actions {
+	display: none;
+	}
+
+a.exclude	{
+	float: right;
+	margin: 0;
+	padding: 0;
+	}
+	
+#small_matches_prefs {
+    display:none;
+}
+/*
+Copyright (c) 2009, Yahoo! Inc. All rights reserved.
+Code licensed under the BSD License:
+http://developer.yahoo.net/yui/license.txt
+version: 2.7.0
+*/
+.yui-button{display:-moz-inline-box;display:inline-block;vertical-align:text-bottom;}.yui-button .first-child{display:block;*display:inline-block;}.yui-button button,.yui-button a{display:block;*display:inline-block;border:none;margin:0;}.yui-button button{background-color:transparent;*overflow:visible;cursor:pointer;}.yui-button a{text-decoration:none;}.yui-skin-sam .yui-button{border-width:1px 0;border-style:solid;border-color:#808080;background:url(../images/yui270/build/assets/skins/sam/96b257a32a932f7739d7dab52b38ee8fcb_sprite.png) repeat-x 0 0;margin:auto .25em;}.yui-skin-sam .yui-button .first-child{border-width:0 1px;border-style:solid;border-color:#808080;margin:0 -1px;_margin:0;}.yui-skin-sam .yui-button button,.yui-skin-sam .yui-button a{padding:0 10px;font-size:93%;line-height:2;*line-height:1.7;min-height:2em;*min-height:auto;color:#000;}.yui-skin-sam .yui-button a{*line-height:1.875;*padding-bottom:1px;}.yui-skin-sam .yui-split-button button,.yui-skin-sam .yui-menu-button button{padding-right:20px;background-position:right center;background-repeat:no-repeat;}.yui-skin-sam .yui-menu-button button{background-image:url(yui270/build/button/assets/skins/sam/6305efb37fa05af65c79b58b9d4c1b03cb_menu-button-arrow.png);}.yui-skin-sam .yui-split-button button{background-image:url(yui270/build/button/assets/skins/sam/ced974d5c685e5dfa0a37b824a6b5d48cb_split-button-arrow.png);}.yui-skin-sam .yui-button-focus{border-color:#7D98B8;background-position:0 -1300px;}.yui-skin-sam .yui-button-focus .first-child{border-color:#7D98B8;}.yui-skin-sam .yui-button-focus button,.yui-skin-sam .yui-button-focus a{color:#000;}.yui-skin-sam .yui-split-button-focus button{background-image:url(yui270/build/button/assets/skins/sam/36e66540d2feba76b8991e18b76fe93bcb_split-button-arrow-focus.png);}.yui-skin-sam .yui-button-hover{border-color:#7D98B8;background-position:0 -1300px;}.yui-skin-sam .yui-button-hover .first-child{border-color:#7D98B8;}.yui-skin-sam .yui-button-hover button,.yui-skin-sam .yui-button-hover a{color:#000;}.yui-skin-sam .yui-split-button-hover button{background-image:url(yui270/build/button/assets/skins/sam/36e66540d2feba76b8991e18b76fe93bcb_split-button-arrow-hover.png);}.yui-skin-sam .yui-button-active{border-color:#7D98B8;background-position:0 -1700px;}.yui-skin-sam .yui-button-active .first-child{border-color:#7D98B8;}.yui-skin-sam .yui-button-active button,.yui-skin-sam .yui-button-active a{color:#000;}.yui-skin-sam .yui-split-button-activeoption{border-color:#808080;background-position:0 0;}.yui-skin-sam .yui-split-button-activeoption .first-child{border-color:#808080;}.yui-skin-sam .yui-split-button-activeoption button{background-image:url(yui270/build/button/assets/skins/sam/890272b241c1d8a0db3ce5680b71fab0cb_split-button-arrow-active.png);}.yui-skin-sam .yui-radio-button-checked,.yui-skin-sam .yui-checkbox-button-checked{border-color:#304369;background-position:0 -1400px;}.yui-skin-sam .yui-radio-button-checked .first-child,.yui-skin-sam .yui-checkbox-button-checked .first-child{border-color:#304369;}.yui-skin-sam .yui-radio-button-checked button,.yui-skin-sam .yui-checkbox-button-checked button{color:#fff;}.yui-skin-sam .yui-button-disabled{border-color:#ccc;background-position:0 -1500px;}.yui-skin-sam .yui-button-disabled .first-child{border-color:#ccc;}.yui-skin-sam .yui-button-disabled button,.yui-skin-sam .yui-button-disabled a{color:#A6A6A6;cursor:default;}.yui-skin-sam .yui-menu-button-disabled button{background-image:url(yui270/build/button/assets/skins/sam/4df7235ca027f2546b2a216e59f81fb0cb_menu-button-arrow-disabled.png);}.yui-skin-sam .yui-split-button-disabled button{background-image:url(yui270/build/button/assets/skins/sam/db73dce6da2f5c5f02399c93488ce69ecb_split-button-arrow-disabled.png);}
+
+</style>
+
+</head>
+
+<body onload="">
+
+
+
+<link rel="stylesheet" type="text/css" href="/r/build/css/tii/88ee4ccd3555f2b759921fb5d58d83e5cb_container.css" media="all" />
+
+
+
+
+<script type="text/javascript" src="/r/build/js/tii/8b608684a5f4aec1b540987c93498c01cb_tii_anonymous_marking.js"></script>
+
+
+
+
+<script type="text/javascript">
+
+function initAnonymousMarking () {
+    // initialize panel.  
+    var config = {
+            zindex: 4,
+            underlay: 'none',
+            modal: true,
+            visible: false,
+            draggable: false,
+            close: false,
+            fixedcenter: true
+    };
+    if ($('disable_anonymous_marking')) {
+        disableAnonymousMarkingPanel = new IP.widget.Panel($('disable_anonymous_marking'), config);
+        if($D.hasClass('disable_anonymous_marking', 'app')) {
+            disableAnonymousMarkingPanel.center = function () {
+                var nViewportOffset = 20,
+                    elementWidth = this.element.offsetWidth,
+                    elementHeight = this.element.offsetHeight,
+                    viewPortWidth = $D.getViewportWidth(),
+                    viewPortHeight = $D.getViewportHeight(),
+                    x,
+                    y;
+
+                if (elementWidth < viewPortWidth) {
+                    x = (viewPortWidth / 2) - (elementWidth / 2) + $D.getDocumentScrollLeft();
+                } else {
+                    x = nViewportOffset + $D.getDocumentScrollLeft();
+                }
+
+				if (browser == 'Internet Explorer') {
+					x = 0;
+				}
+                y = 2 + $D.getDocumentScrollTop();
+
+                this.cfg.setProperty("xy", [parseInt(x, 10), parseInt(y, 10)]);
+                this.cfg.refireEvent("iframe");
+            };
+        }
+        disableAnonymousMarkingPanel.render(document.body);
+        disableAnonymousMarkingPanel.hideEvent.subscribe(function () { $('anonymous_error').innerHTML = ''; }, false);
+        disableAnonymousMarkingPanel.hide();
+        Element.show($('disable_anonymous_marking'));
+    }
+}
+
+function disableAM (data) {
+    $('anonymous_title').innerHTML = data.title;
+    document.disable_anonymous_marking_form.objectid.value = data.oid;
+    disableAnonymousMarkingPanel.show();
+}
+
+function checkDisableAM () {
+    var form = document.disable_anonymous_marking_form;
+    if (form.reason.value.length <= 5) {
+        $('anonymous_error').innerHTML = "Please provide a reason for turning anonymous marking off.";
+    }
+    else {
+        form.submit();
+    }
+    return;
+}
+
+YAHOO.util.Event.onDOMReady(initAnonymousMarking);
+
+</script>
+
+<div id="disable_anonymous_marking" class="app" style="display: none;">
+<div class="anonymous_frames">
+<form method="post" name="disable_anonymous_marking_form">
+    <input type="hidden" name="objectid" value=""/>
+    <input type="hidden" name="disable_anonymous_marking" value="1"/> 
+    <div class="anonymous_header">
+    	<h1>turn off anonymous marking</h1>
+		<p>Please state reason for turning off Anonymous Marking for: <span id="anonymous_title"></span><br />
+			<strong>Warning: Administrator has access to this information. This setting is permanent.</strong>
+        
+            </p>
+        
+    </div>
+    <div class="anonymous_body">
+        <textarea name="reason" cols="30" rows="3"></textarea>
+        <p id="anonymous_error"></p>
+    </div>
+    <div class="anonymous_footer">
+		<div class="anonymous_footer_buttons">
+    		<span class="submit_form_button"><input type="button" onClick="checkDisableAM();" value="submit"></span><br>
+        	<span class="submit_form_button"><input type="button" value="Cancel" onClick="disableAnonymousMarkingPanel.hide();"></span>
+		</div>
+    </div>
+</form>
+</div>
+</div>
+<div id="actions">
+<p>This is a preview of the print version of your report. Please click "print" to continue or "done" to close this window.</p>
+<script type="text/javascript" language="javascript">
+	var browserName=navigator.appName;
+	var browserVer=parseInt(navigator.appVersion);
+	if ((navigator.appVersion.indexOf("Mac")!=-1) && (browserName == "Microsoft Internet Explorer")) {
+		document.write('<span class="AR10">Type COMMAND-P to print.</span><br><br>');
+	} else {
+		document.write('<a href="javascript:window.print();">print</a>&nbsp;&nbsp;');
+	}
+</script>
+<a href="javascript:window.close();">done</a>
+</div>
+
+
+<!-- ########################### Preferences pop-up ##########################--> 
+<div id="prefs" style="visibility:hidden">
+<div class="padding">
+<form name="prefs_form" method="post" accept-charset="utf-8">
+<script type="text/javascript" language="javascript">
+function savePrefs(){
+	if (document.prefs_form.changed.value == 1){
+		document.prefs_form.submit();
+	}else{
+        hidePrefsPane();
+	}
+}
+
+function showPrefsPane(){
+    document.getElementById('prefs').style.visibility='visible';
+    document.getElementById('use_colors').focus();
+}
+
+function hidePrefsPane(){
+    document.getElementById('prefs').style.visibility='hidden';
+    document.getElementById('prefs_link').focus();
+}
+
+
+var overlay;
+function showSmallMatchExclusions() {
+    var linkRegion = $D.getRegion('exclude_small_matches_link');
+    var panelRegion = $D.getRegion('small_matches_prefs');
+    var indexRegion = $D.getRegion('index');
+    
+    var topLocation = indexRegion.bottom;
+    $D.setStyle('small_matches_prefs', 'top', topLocation + 'px');
+    $D.setStyle('small_matches_prefs', 'left', linkRegion.left + 'px');
+    
+    $D.setStyle('small_matches_prefs', 'visibility', 'visible');
+
+    // focus the field
+    $D.hasClass('exclude_by_percent_row', 'selected') ? $('exclude_by_percent_value').focus() : $('exclude_by_words_value').focus();
+}
+
+function hideSmallMatchExclusions() {
+    $D.setStyle('small_matches_prefs', 'visibility', 'hidden');
+}
+
+function selectSmallExclusionMethod(enableType) {
+    if(enableType == 'words') {
+        $('exclude_by_words_value').focus();
+        
+        $D.addClass('exclude_by_words_row', 'selected');
+        $D.removeClass('exclude_by_percent_row', 'selected');
+        $D.removeClass('exclude_by_words_row', 'disabled');
+        $D.addClass('exclude_by_percent_row', 'disabled');
+    }
+    else {
+        $('exclude_by_percent_value').focus();
+        
+        $D.removeClass('exclude_by_words_row', 'selected');
+        $D.addClass('exclude_by_percent_row', 'selected');
+        $D.addClass('exclude_by_words_row', 'disabled');
+        $D.removeClass('exclude_by_percent_row', 'disabled');
+    }
+}
+
+function updateExcludePercentage(wordCount) {
+    var percent = Math.floor(wordCount / 2459 * 100);
+    
+    $('exclude_by_percent_value').value = percent;
+}
+
+function updateExcludeWordCount(percent) {
+    var wordCount = Math.floor((percent/100) * 2459);
+    
+    $('exclude_by_words_value').value = wordCount;
+}
+
+function submitSmallMatchesChange() {
+    var excludeBy = $D.hasClass('exclude_by_percent_row', 'selected') ? 'percent' : 'words';
+    var excludeValue = excludeBy == 'percent' ? $('exclude_by_percent_value').value : $('exclude_by_words_value').value;
+    
+    changeSmallMatchExclusion(excludeBy, parseInt(excludeValue), 2459);
+}
+
+</script>
+</script>
+<input type="hidden" name="changed" value="0">
+        <div class="pref_rows">
+                <label for="use_colors">color-code matches:</label>
+                <select id="use_colors" name="use_colors" onchange="document.prefs_form.changed.value=1">
+                    <option value="1">yes
+                    <option value="0" selected>no
+                </select>
+                <div class="clear"></div>
+        </div>
+        <div class="pref_rows">
+                <label for="def_report_mode">default mode:</label>
+                <select id="def_report_mode" name="def_report_mode" onchange="document.prefs_form.changed.value=1">
+                    <option value="0">show highest matches together
+                    <option value="1">show matches one at a time
+                    <option value="2">quickview (classic) report
+                </select>
+                <div class="clear"></div>
+        </div>
+        <div class="pref_rows">
+                <label for="report_scrolling">auto-navigation:</label>
+                <select id="report_scrolling" name="report_scrolling" onchange="document.prefs_form.changed.value=1">
+                    <option value="0">jump to next match
+                    <option value="1">scroll to next match
+                </select>
+                <div class="clear"></div>
+        </div>
+        
+        <div id="prefs_confirm">
+            <button onClick="savePrefs()" >Save</button>  
+         <a href="javascript:void(0);" onClick="hidePrefsPane();">Cancel</a>
+        </div>
+</form>
+</div>
+</div>
+<!-- ########################### END Preferences pop-up  ##########################--> 
+
+<!-- ########################### BEGIN small matches pop-up  ##########################--> 
+<div id="small_matches_prefs">
+    <form onsubmit="submitSmallMatchesChange(); return false;">
+        <ul>
+            <li id="exclude_by_words_row" class="selected">
+                <label for="exclude_by_words_value">Word Count: </label>
+                <input type="text" id="exclude_by_words_value" size="3" value="" onkeyup="updateExcludePercentage(this.value)" onfocus="selectSmallExclusionMethod('words')"> words
+            </li>
+            <li id="exclude_by_percent_row" class="disabled">
+                <label for="exclude_by_percent_value">Percentage: </label>
+                <input type="text" id="exclude_by_percent_value" size="3" value="" max-length="3" onkeyup="updateExcludeWordCount(this.value)" onfocus="selectSmallExclusionMethod('percent')"> %
+            </li>
+        </ul>
+        <p><input type='submit' value="submit"> or <a href="javascript:hideSmallMatchExclusions()">Cancel</a></p>
+    </form>
+</div>
+
+<!-- ########################### END small matches pop-up  ##########################-->
+
+<!-- ########################### Top of Report  ##########################--> 
+<div id="top">
+    <div id="content">
+    
+        <!-- ######### Top Bar  ##########################--> 
+        <div id="top_bar">
+                <ul id="top_bar_list1">
+                      <!-- Preferences --><li><a id="prefs_link" href="javascript:showPrefsPane();">preferences</a></li> 
+                </ul>
+                <ul id="top_bar_list2">
+                      
+                </ul>
+                <div class="clear"></div>
+        </div>   
+        <!-- ######### END Top Bar  ##########################--> 
+        
+        
+        <!-- ######### Top Body  ##########################--> 
+        <div id="top_body">
+        
+            <div id="print_wrapper">
+                <div class="general_info">
+                    <!-- Logo --> 
+                    <h2>
+                        <span class=""></span>
+                        <strong>Turnitin</strong>
+                        <em>Originality Report</em>
+                     </h2>
+                 
+                     <!-- Paper Info -->               
+                     <ul>
+                         <li>Processed on: 05-Nov-2019  4:16 AM PST</li>
+                         <li>ID: 1207463133 </li>
+                         <li>Word Count: 2459</li>
+                         <li>Submitted: 1</li>
+                     </ul>
+                </div>
+
+                 <!-- Paper Title --> 
+                <h3>
+                    <strong>302CEM_19A_Phoenix_GroupReflectiveReport</strong> 
+                    
+                    <em>By Student User</em>
+                    
+                </h3>
+            </div>
+            
+            <div id="similarity_print_wrapper">
+                <div class="similarity_box">
+                    <div class="overall_similarity">
+                        <div class="color_box green">&nbsp;</div>
+                        <div class="similarity_title">Similarity Index</div>
+                        <div class="similarity_percent">18%</div>
+                    </div>
+                    <div class="similarity_by_source">
+                        <div class="similarity_title">Similarity by Source</div>
+                        <dl>
+                            <dt>Internet&nbsp;Sources:</dt>
+                            <dd>2%</dd>
+                            <div class="clear"></div>
+                            <dt>Publications:</dt>
+                            <dd>1%</dd>
+                            <div class="clear"></div>
+                            <dt>Student&nbsp;Papers:</dt>
+                            <dd>17%</dd>
+                            <div class="clear"></div>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+            <div class="clear"></div>
+                                 
+        </div>
+        <!-- ######### END Top Body  ##########################--> 
+        
+        
+    </div>
+</div>
+<!-- ########################### END Top of Report  ##########################--> 
+
+
+
+<!-- ########################### TOOLBAR  ##########################--> 
+<div id="index">
+	<div id="toolbar_wrapper">
+        
+	</div>
+</div>
+<!-- ########################### END TOOLBAR  ##########################--> 
+
+
+<div class="links">
+	<div>
+	<p>4% match (student papers from 25-Feb-2017)</p>
+
+	<p><a href="javascript:openDSC(775926337,1,'0')" target="_blank" style="color:red">Submitted to Harrisburg University of Science and Technology on 2017-02-25</a></p>
+
+
+	</div>
+	<div>
+	<p>1% match (student papers from 17-Feb-2011)</p>
+
+	<p><a href="javascript:openDSC(9518951,2,'0')" target="_blank" style="color:green">Submitted to Bloomsbury Colleges on 2011-02-17</a></p>
+
+
+	</div>
+	<div>
+	<p>1% match (student papers from 26-Oct-2019)</p>
+
+    <p>Class: STWA300CW-Writing Skills-Jan2019 (Moodle TT)</p>
+    <p>Assignment: Academic writing assignment Part 1 (Moodle TT)</p>
+	<p>Paper ID: <a href="/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:1631936961&perc=1" target="_blank" style="color:blue">1200627316</a></p>
+
+
+	</div>
+	<div>
+	<p>1% match (student papers from 30-Apr-2019)</p>
+
+	<p><a href="javascript:openDSC(599882747,2,'0')" target="_blank" style="color:brown">Submitted to Manchester Metropolitan University on 2019-04-30</a></p>
+
+
+	</div>
+	<div>
+	<p>1% match (student papers from 23-Nov-2015)</p>
+
+	<p><a href="javascript:openDSC(604685827,1,'0')" target="_blank" style="color:#ff6600">Submitted to College of Banking and Financial Studies on 2015-11-23</a></p>
+
+
+	</div>
+	<div>
+	<p>1% match (student papers from 28-Nov-2012)</p>
+
+	<p><a href="javascript:openDSC(19568708,2,'0')" target="_blank" style="color:#630000">Submitted to University of Strathclyde on 2012-11-28</a></p>
+
+
+	</div>
+	<div>
+	<p>1% match (student papers from 01-Feb-2016)</p>
+
+	<p><a href="javascript:openDSC(626701104,1,'0')" target="_blank" style="color:#009cff">Submitted to University of West Florida on 2016-02-01</a></p>
+
+
+	</div>
+	<div>
+	<p>1% match (student papers from 04-Mar-2009)</p>
+
+	<p><a href="javascript:openDSC(3240571,2,'0')" target="_blank" style="color:#31ff00">Submitted to University of Leeds on 2009-03-04</a></p>
+
+
+	</div>
+	<div>
+	<p>1% match (student papers from 19-Dec-2011)</p>
+
+	<p><a href="javascript:openDSC(13838562,2,'0')" target="_blank" style="color:#330099">Submitted to Edge Hill College of Higher Education on 2011-12-19</a></p>
+
+
+	</div>
+	<div>
+	<p>1% match (student papers from 20-Aug-2019)</p>
+
+	<p><a href="javascript:openDSC(1588838602,1,'0')" target="_blank" style="color:#00cc99">Submitted to National Institute of Business Management Sri Lanka on 2019-08-20</a></p>
+
+
+	</div>
+	<div>
+	<p>1% match (student papers from 13-Mar-2013)</p>
+
+	<p><a href="javascript:openDSC(22355819,2,'0')" target="_blank" style="color:#ff0063">Submitted to London School of Commerce - Belgrade on 2013-03-13</a></p>
+
+
+	</div>
+	<div>
+	<p>1% match (student papers from 19-Sep-2006)</p>
+
+	<p><a href="javascript:openDSC(29814732,1,'0')" target="_blank" style="color:#006331">Submitted to (school name not available) on 2006-09-19</a></p>
+
+
+	</div>
+	<div>
+	<p>< 1% match (Internet from 16-Sep-2018)</p>
+
+	<p><a href="http://wdz.eng.br/LivroRequirements3Ed.pdf" target="_blank" style="color:#9966ff">http://wdz.eng.br/LivroRequirements3Ed.pdf</a></p>
+
+
+	</div>
+	<div>
+	<p>< 1% match (student papers from 07-May-2014)</p>
+
+	<p><a href="javascript:openDSC(33360217,2,'0')" target="_blank" style="color:#9c6331">Submitted to Blackpool and The Fylde College, Lancashire on 2014-05-07</a></p>
+
+
+	</div>
+	<div>
+	<p>< 1% match (publications)</p>
+
+	<p><a href="http://link.springer.com/10.1007/978-3-319-54325-3" target="_blank" style="color:#ce0031">"Software Project Management for Distributed Computing", Springer Science and Business Media LLC, 2017</a></p>
+
+
+	</div>
+	<div>
+	<p>< 1% match (student papers from 15-Aug-2014)</p>
+
+	<p><a href="javascript:openDSC(444411217,1,'0')" target="_blank" style="color:#cc9900">Submitted to University of the Western Cape on 2014-08-15</a></p>
+
+
+	</div>
+	<div>
+	<p>< 1% match (Internet from 26-Jan-2016)</p>
+
+	<p><a href="http://www.agileexams.com/a-look-into-the-agile-certified-practitioner-pmi-acp/" target="_blank" style="color:#63009c">http://www.agileexams.com/a-look-into-the-agile-certified-practitioner-pmi-acp/</a></p>
+
+
+	</div>
+	<div>
+	<p>< 1% match (publications)</p>
+
+	<p><a href="http://link.springer.com/10.1007/978-3-642-37317-6" target="_blank" style="color:#cc6600">"Digital Enterprise Design and Management 2013", Springer Nature, 2013</a></p>
+
+
+	</div>
+	<div>
+	<p>< 1% match (student papers from 17-Nov-2017)</p>
+
+	<p><a href="javascript:openDSC(77725529,2,'0')" target="_blank" style="color:#cc0066">Submitted to University College London on 2017-11-17</a></p>
+
+
+	</div>
+	<div>
+	<p>< 1% match (student papers from 07-Jun-2010)</p>
+
+	<p><a href="javascript:openDSC(139650512,1,'0')" target="_blank" style="color:#33cc99">Submitted to University of Western Sydney on 2010-06-07</a></p>
+
+
+	</div>
+	<div>
+	<p>< 1% match (student papers from 18-Apr-2019)</p>
+
+	<p><a href="javascript:openDSC(1537041579,1,'0')" target="_blank" style="color:#336699">Submitted to Colorado Technical University Online on 2019-04-18</a></p>
+
+
+	</div>
+	<div>
+	<p>< 1% match (student papers from 05-Sep-2016)</p>
+
+	<p><a href="javascript:openDSC(701395304,1,'0')" target="_blank" style="color:red">Submitted to University of the Western Cape on 2016-09-05</a></p>
+
+
+	</div>
+	<div>
+	<p>< 1% match (student papers from 11-Feb-2016)</p>
+
+	<p><a href="javascript:openDSC(52892519,2,'0')" target="_blank" style="color:green">Submitted to Staffordshire University on 2016-02-11</a></p>
+
+
+	</div>
+	<div>
+	<p>< 1% match (student papers from 26-Nov-2006)</p>
+
+	<p><a href="javascript:openDSC(35860166,1,'0')" target="_blank" style="color:blue">Submitted to University of Maryland, University College on 2006-11-26</a></p>
+
+
+	</div>
+</div>
+<div id="body" tabIndex="0">
+<p>STW302CEM Group Reflective Report Agile Development Group Project Authored By Netra Dahal [9636138], Sushan Tha Shrestha [9638073], Romisha Thapa [9637412], <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 3 in source list: Submitted to Softwarica College Of IT & E-Commerce on 2019-10-26"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:1631936961&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:blue" class="blue">Biju Ale</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> [9638350] <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 3 in source list: Submitted to Softwarica College Of IT & E-Commerce on 2019-10-26"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:1631936961&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:blue" class="blue">Assignment report submitted for the partial fulfilment of BSc (Hons) Computing degree. Module Title</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> Agile Development <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 3 in source list: Submitted to Softwarica College Of IT & E-Commerce on 2019-10-26"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:1631936961&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:blue" class="blue">Module Code:</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> STW302CEM <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 3 in source list: Submitted to Softwarica College Of IT & E-Commerce on 2019-10-26"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:1631936961&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:blue" class="blue">Course Title:</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> BSc (Hons) Computing <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 3 in source list: Submitted to Softwarica College Of IT & E-Commerce on 2019-10-26"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:1631936961&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:blue" class="blue">Course Code:</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> EECU033 <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 3 in source list: Submitted to Softwarica College Of IT & E-Commerce on 2019-10-26"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:1631936961&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:blue" class="blue">Submission Date:</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> 05 Nov, 2019 <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 3 in source list: Submitted to Softwarica College Of IT & E-Commerce on 2019-10-26"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:1631936961&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:blue" class="blue">Submitted To:</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> Sudeep Lal Bajimauya (Module leader) <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 10 in source list: Submitted to National Institute of Business Management Sri Lanka on 2019-08-20"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:1588838602&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#00cc99" class="#00cc99">Faculty of Engineering, Environment and Computing School of Computing, Electronics and Mathematics Coventry University</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> STW302CEM Group Reflective <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 10 in source list: Submitted to National Institute of Business Management Sri Lanka on 2019-08-20"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:1588838602&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#00cc99" class="#00cc99">Report</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> Agile Development Group Project Team Psychology Teams and teamwork Approaches to work motivation Need theory Expectancy Theory Self-determined theory Team Communication Issue Resolution of our Team Agile Processes Our Team Scrum Methodology Sprint planning The Daily Stand-up meeting The <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 21 in source list: Submitted to Colorado Technical University Online on 2019-04-18"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:1537041579&perc=0', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#336699" class="#336699">retrospective Scrum Artifacts Product Backlog Sprint Backlog References</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> 1 3 4 4 4 5 6 7 7 8 8 9 9 9 10 10 10 10 12 Team Psychology Teamwork is generally understood as the willingness of people to work <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 17 in source list: http://www.agileexams.com/a-look-into-the-agile-certified-practitioner-pmi-acp/"><a href="javascript:void(0);" onClick="window.open('newreport_context.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&sid=3953486308&n=2209&svr=55&session-id=1b08e9dae4c0c94db58986254207d375', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#63009c" class="#63009c">together to achieve a common goal. In the</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> agile space, a team is performance unite. A performance unit is an encapsulated body and its mission is to transform backlog into a valuable product. Team psychology has a great role to play to determine its velocity (Goodpasture 2010: 189). Also, the mental character of group plays a vital role to meet and fulfill all the <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 15 in source list: "Software Project Management for Distributed Computing", Springer Science and Business Media LLC, 2017"><a href="javascript:void(0);" onClick="window.open('newreport_context.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&sid=518184203&n=37&svr=55&session-id=1b08e9dae4c0c94db58986254207d375', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#ce0031" class="#ce0031">values and principles of the agile manifesto. Team</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> psychology enables <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 15 in source list: "Software Project Management for Distributed Computing", Springer Science and Business Media LLC, 2017"><a href="javascript:void(0);" onClick="window.open('newreport_context.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&sid=518184203&n=37&svr=55&session-id=1b08e9dae4c0c94db58986254207d375', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#ce0031" class="#ce0031">to</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> examine the crucial factors in the growth and development of an effective team. Introducing organizational concepts and offering evidence-based intervention to enhance the performance of a whole team. Team psychology has been determined based on theory of team psychology in a work. A theory in psychology is an <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 9 in source list: Submitted to Edge Hill College of Higher Education on 2011-12-19"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:2:13838562&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#330099" class="#330099">organized collection of ideas that serves to describe, explain or predict what a person</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> thinks, feels or <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 9 in source list: Submitted to Edge Hill College of Higher Education on 2011-12-19"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:2:13838562&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#330099" class="#330099">do (Arnold,</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> Randall, <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 9 in source list: Submitted to Edge Hill College of Higher Education on 2011-12-19"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:2:13838562&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#330099" class="#330099">and</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> Patterson 2010: 78). To be successful it needs to specify the five elements given below. ● ● The particular behavior, thoughts or emotion of an individual. Any differences between people in a degree to which they characteristically exhibit the thoughts, behavior and emotions. ● ● Situational factors that might influence thoughts, behavior and emotions. Any consequences of the interaction between given theory 2 and 3 for the thoughts, behavior and emotions. ● Occurrence of particular thoughts, behavior or emotions that might feedback to produce change in 2 and 3 and have a positive impact on a team. Based on this theory, we were able to see, predict and solve the occurrence of late arrival Fig: 1 A simplified structure of psychological theory. (Coon 2017: 135) for stand-up meeting. We initially predicted that the relevant individual characteristics might include the degree of <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 5 in source list: Submitted to College of Banking and Financial Studies on 2015-11-23"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:604685827&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#ff6600" class="#ff6600">a person’s</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> work <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 5 in source list: Submitted to College of Banking and Financial Studies on 2015-11-23"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:604685827&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#ff6600" class="#ff6600">satisfaction and</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> stable traits like <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 5 in source list: Submitted to College of Banking and Financial Studies on 2015-11-23"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:604685827&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#ff6600" class="#ff6600">the extent to which</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> a team <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 5 in source list: Submitted to College of Banking and Financial Studies on 2015-11-23"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:604685827&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#ff6600" class="#ff6600">to be well organized. Relevant past experience might include</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> a penalty <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 5 in source list: Submitted to College of Banking and Financial Studies on 2015-11-23"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:604685827&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#ff6600" class="#ff6600">for being late.</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> Situational <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 5 in source list: Submitted to College of Banking and Financial Studies on 2015-11-23"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:604685827&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#ff6600" class="#ff6600">features might include distance,</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> simplicity and complexity <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 5 in source list: Submitted to College of Banking and Financial Studies on 2015-11-23"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:604685827&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#ff6600" class="#ff6600">to</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> travel from home to the meeting area, weather and traffic jam. These situations might have a direct impact on a person’s actual incidence of arriving late. On the other hand, we put thought on <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 20 in source list: Submitted to University of Western Sydney on 2010-06-07"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:139650512&perc=0', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#33cc99" class="#33cc99">the interaction between person and situation.</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> For example, <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 20 in source list: Submitted to University of Western Sydney on 2010-06-07"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:139650512&perc=0', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#33cc99" class="#33cc99">a</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> well-organized <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 20 in source list: Submitted to University of Western Sydney on 2010-06-07"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:139650512&perc=0', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#33cc99" class="#33cc99">person</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> may have no trouble or difficulty making complex travel. So, here the issue was the lack of well organizational skill of a person. It's likely that person and situation influence each other. At first, we noticed it occurring in at least three ways. First, a person’s character affecting the types of situation exposed by him/herself. For example, not deciding carefully on where to live. Second, People changing the features of their situation, or vice versa. Third, a person’s behavior leading him\her to change and make a well-organized person or changing situations for example, being dismissed for being late once again. Considering all the scenarios, we managed our meeting time for 11 AM and had to leave home at 9 AM to conduct meeting which eventually improved the punctuality of team Teams and teamwork Analyzing the performances at the lab and looking at the big five personality traits, we found the <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 4 in source list: Submitted to Manchester Metropolitan University on 2019-04-30"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:2:599882747&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:brown" class="brown">evidence for the importance of many individual differences determining team effectiveness.</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> These <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 4 in source list: Submitted to Manchester Metropolitan University on 2019-04-30"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:2:599882747&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:brown" class="brown">include</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> factors such as, <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 4 in source list: Submitted to Manchester Metropolitan University on 2019-04-30"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:2:599882747&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:brown" class="brown">conscientiousness,</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 4 in source list: Submitted to Manchester Metropolitan University on 2019-04-30"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:2:599882747&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:brown" class="brown">openness to experience,</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> neuroticism, <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 4 in source list: Submitted to Manchester Metropolitan University on 2019-04-30"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:2:599882747&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:brown" class="brown">agreeableness and average level of cognitive ability within</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> the <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 4 in source list: Submitted to Manchester Metropolitan University on 2019-04-30"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:2:599882747&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:brown" class="brown">team.</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> Initially, it was <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 4 in source list: Submitted to Manchester Metropolitan University on 2019-04-30"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:2:599882747&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:brown" class="brown">not</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> a piece of cake to resolve bridge the gap between person with such a huge difference. Practices of module leader in facilitating discussion and summing it up slowly improvised adaptive environment. Approaches to work motivation Motivation and how to constantly manage it is the measure concern while accomplishing any goal. To complete this agile project, we looked at the concept of motivation, explored some of its implications and implemented some of the theories in practice. Need theories, Expectancy theory, Goal-setting theory, intrinsic motivation, extrinsic motivation and self-determined theory. Need theory This <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 11 in source list: Submitted to London School of Commerce - Belgrade on 2013-03-13"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:2:22355819&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#ff0063" class="#ff0063">theory is based on the idea that there are psychological needs probably of biological origin.</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> In case of <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 2 in source list: Submitted to Bloomsbury Colleges on 2011-02-17"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:2:9518951&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:green" class="green">our needs are unmet, we experience disequilibrium</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> after <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 2 in source list: Submitted to Bloomsbury Colleges on 2011-02-17"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:2:9518951&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:green" class="green">which we try to put right.</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> Examining this theory with practices we found that the notion of need reflects the content of motivation. <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 16 in source list: Submitted to University of the Western Cape on 2014-08-15"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:444411217&perc=0', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#cc9900" class="#cc9900">In general psychology the</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> notion <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 16 in source list: Submitted to University of the Western Cape on 2014-08-15"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:444411217&perc=0', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#cc9900" class="#cc9900">of</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> need <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 16 in source list: Submitted to University of the Western Cape on 2014-08-15"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:444411217&perc=0', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#cc9900" class="#cc9900">has a long history.</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> The best known of this theory is Abraham Maslow. <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 2 in source list: Submitted to Bloomsbury Colleges on 2011-02-17"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:2:9518951&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:green" class="green">He was humanistically oriented psychologist</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> and later <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 2 in source list: Submitted to Bloomsbury Colleges on 2011-02-17"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:2:9518951&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:green" class="green">offered general theory of human functioning.</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> Later, he refined <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 2 in source list: Submitted to Bloomsbury Colleges on 2011-02-17"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:2:9518951&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:green" class="green">and</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 2 in source list: Submitted to Bloomsbury Colleges on 2011-02-17"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:2:9518951&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:green" class="green">proposed five classes of human needs</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> which <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 2 in source list: Submitted to Bloomsbury Colleges on 2011-02-17"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:2:9518951&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:green" class="green">are</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> shown in hierarchy (Coon 2017: 119). Figure: 2 Maslow’s hierarchy of need Expectancy Theory Initially, a bit of confusion stroked on who will take the responsibility of which task while doing project. After going through this theory, it made us clear that it <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 14 in source list: Submitted to Blackpool and The Fylde College, Lancashire on 2014-05-07"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:2:33360217&perc=0', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#9c6331" class="#9c6331">concentrates on the process. This choice process</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> is <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 14 in source list: Submitted to Blackpool and The Fylde College, Lancashire on 2014-05-07"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:2:33360217&perc=0', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#9c6331" class="#9c6331">seen as cognitive.</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> Based on this theory and following three factors we chose possible courses of action we would pursue. <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 22 in source list: Submitted to University of the Western Cape on 2016-09-05"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:701395304&perc=0', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:red" class="red">Three factors</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> include <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 22 in source list: Submitted to University of the Western Cape on 2016-09-05"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:701395304&perc=0', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:red" class="red">expectancy, instrumentality and valence.</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> Expectancy: If I tried, would I be able to perform the task which I’m considering? Instrumentality: Would performing the task lead to identifiable outcomes? Valence: How much do I value outcomes? Goal-setting theory Expectancy, instrumentality and valence was not enough in order to accomplish the task. First phase was knowing own capacity and worth of the task. As Locke et al defines, <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 8 in source list: Submitted to University of Leeds on 2009-03-04"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:2:3240571&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#31ff00" class="#31ff00">‘Goal is what an individual trying to accomplish; it is</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> an <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 8 in source list: Submitted to University of Leeds on 2009-03-04"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:2:3240571&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#31ff00" class="#31ff00">aim of an action. (Locke et al. 1981:</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> 128)’ And goal setting is like a bridge to bring idea or aim into action. We followed goal-setting cycle and essential elements to keep ourselves motivated which is shown below. Figure 3: Essential elements of goal-setting cycle. (Locke et al. 1981) Self-determined theory At the initial phase of the project we noticed the task not been fully accomplished at the first sprint. In the processes of trying to figure out that one of the factors was due to the lack of intrinsic motivation. Deci and Ryan (2008) explains, ‘intrinsic motivation is a doing of <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 7 in source list: Submitted to University of West Florida on 2016-02-01"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:626701104&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#009cff" class="#009cff">an activity for its inherent satisfaction’. Whereas, ‘extrinsic motivation pertains</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> that <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 7 in source list: Submitted to University of West Florida on 2016-02-01"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:626701104&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#009cff" class="#009cff">an activity is done in order to</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> obtain <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 7 in source list: Submitted to University of West Florida on 2016-02-01"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:626701104&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#009cff" class="#009cff">some separable</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> outcomes’ . We first gave priority to extrinsic motivation but later on we found missing intrinsic one. In one research, <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 6 in source list: Submitted to University of Strathclyde on 2012-11-28"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:2:19568708&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#630000" class="#630000">Herzberg argued that intrinsic motivation is more</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> powerful <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 6 in source list: Submitted to University of Strathclyde on 2012-11-28"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:2:19568708&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#630000" class="#630000">and</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> reliable <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 6 in source list: Submitted to University of Strathclyde on 2012-11-28"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:2:19568708&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#630000" class="#630000">than extrinsic motivation as a way of influencing behavior at work</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> (Grigaliunas <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 6 in source list: Submitted to University of Strathclyde on 2012-11-28"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:2:19568708&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#630000" class="#630000">and</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> Herzberg 1971). Along with extrinsic we followed intrinsic motivation and self-determined theory. Team Communication Building a great team requires strong communication skills. Communication, in general, is the use of symbols in order to represent ideas so that meanings can be share. Symbols include movement, gesture, sound or image. Interpersonal communication skill is critically important in group or teamwork or in every facet of life. Interpersonal communication has consequences which means it produces outcomes but it’s not always expected to be perfect. For example, In the process of stand-up meeting we noticed that thought of one team member was never completely communicated to another member. At that time different interpretation was noticeable and frustrating at the initial phase. But that was a positive slippage between the ideas and the meaning. Issue Resolution of our Team Different people have different level of understanding. We conducted meeting with our supervisor to resolve this issue. Finally, he figured out that it was occurring due to the knowledge and understanding gap between team. Supervisor analyzed the behavior of team members at the stand-up meeting he noticed it going wrong. We weren’t following the rules of effective stand-up meeting and gap in performance efficiency was seen. Also, only the active members were sharing high-level information as concisely as possible while other remaining silence. To divide task in the same manner and interval the module leader gave an idea of choosing task as per an individual capacity and record finished task in key performance indicator to demonstrate how effectively an individual is performing a task. The more person completes the task the more he/she would get value. Which also acted as an extrinsic motivation to accomplish the task. Finally, the issue got resolved. Through theory and practice interpersonal communication become more transparent and comprehensive and crystalline among teams. The issue was not merely an issue rather it opened a door to analyze it properly and increase problem solving skills. As we got to know that everyone brings own unique viewpoints and perspectives. Also, our personal traits influence on what we take away and what our communication partners might think about us. At the root of it cognition and perception are seen to make a difference. Agile Processes Agile software <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 13 in source list: http://wdz.eng.br/LivroRequirements3Ed.pdf"><a href="javascript:void(0);" onClick="window.open('newreport_context.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&sid=1793902352&n=3265&svr=55&session-id=1b08e9dae4c0c94db58986254207d375', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#9966ff" class="#9966ff">development refers to a</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> variety <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 13 in source list: http://wdz.eng.br/LivroRequirements3Ed.pdf"><a href="javascript:void(0);" onClick="window.open('newreport_context.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&sid=1793902352&n=3265&svr=55&session-id=1b08e9dae4c0c94db58986254207d375', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#9966ff" class="#9966ff">of software development methods that</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> promotes <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 13 in source list: http://wdz.eng.br/LivroRequirements3Ed.pdf"><a href="javascript:void(0);" onClick="window.open('newreport_context.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&sid=1793902352&n=3265&svr=55&session-id=1b08e9dae4c0c94db58986254207d375', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#9966ff" class="#9966ff">continuous</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> iteration of development <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 13 in source list: http://wdz.eng.br/LivroRequirements3Ed.pdf"><a href="javascript:void(0);" onClick="window.open('newreport_context.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&sid=1793902352&n=3265&svr=55&session-id=1b08e9dae4c0c94db58986254207d375', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#9966ff" class="#9966ff">and</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> is based on iterative development throughout the software development lifecycle (Goodpasture 2010). Requirements and solutions are found using collaboration between the members of the teams. It helps to assist the team to respond to the unpredictability while developing software. It applies incremental and iterative progression segments that are known as sprints. Our Team Scrum team comprises <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 1 in source list: Submitted to Harrisburg University of Science and Technology on 2017-02-25"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:775926337&perc=4', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:red" class="red">of 7+/-2 members.</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> There is <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 1 in source list: Submitted to Harrisburg University of Science and Technology on 2017-02-25"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:775926337&perc=4', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:red" class="red">no</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> definite <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 1 in source list: Submitted to Harrisburg University of Science and Technology on 2017-02-25"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:775926337&perc=4', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:red" class="red">team leader to</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> assign <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 1 in source list: Submitted to Harrisburg University of Science and Technology on 2017-02-25"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:775926337&perc=4', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:red" class="red">tasks or decide how</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> to solve <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 1 in source list: Submitted to Harrisburg University of Science and Technology on 2017-02-25"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:775926337&perc=4', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:red" class="red">a problem,</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> as <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 1 in source list: Submitted to Harrisburg University of Science and Technology on 2017-02-25"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:775926337&perc=4', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:red" class="red">the team</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> members are self-organized. Scrum Methodology Figure 8: Comparison Agile Project management methodology (Qumer and Henderson-Sellers 2008) We applied scrum project management methodology to our project. It <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 1 in source list: Submitted to Harrisburg University of Science and Technology on 2017-02-25"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:775926337&perc=4', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:red" class="red">is an agile project management framework</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> which is especially <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 1 in source list: Submitted to Harrisburg University of Science and Technology on 2017-02-25"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:775926337&perc=4', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:red" class="red">used for software development.</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> It follows <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 1 in source list: Submitted to Harrisburg University of Science and Technology on 2017-02-25"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:775926337&perc=4', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:red" class="red">the</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 19 in source list: Submitted to University College London on 2017-11-17"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:2:77725529&perc=0', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#cc0066" class="#cc0066">values and principles</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> from <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 19 in source list: Submitted to University College London on 2017-11-17"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:2:77725529&perc=0', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#cc0066" class="#cc0066">agile</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> but involves <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 19 in source list: Submitted to University College London on 2017-11-17"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:2:77725529&perc=0', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#cc0066" class="#cc0066">further</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> specifics particularly <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 19 in source list: Submitted to University College London on 2017-11-17"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:2:77725529&perc=0', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#cc0066" class="#cc0066">regarding</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> certain <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 19 in source list: Submitted to University College London on 2017-11-17"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:2:77725529&perc=0', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#cc0066" class="#cc0066">software development</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> practises (Rubin 2012). Sprint planning <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 1 in source list: Submitted to Harrisburg University of Science and Technology on 2017-02-25"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:775926337&perc=4', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:red" class="red">A sprint is a time period during which</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> a specified amount of work is done and prepared for review. Our sprints lasted a week with five working days and slack time of two days. Saturday and Sunday were left for slack and other five days as working days. Sprint planning is the meeting done to <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 18 in source list: "Digital Enterprise Design and Management 2013", Springer Nature, 2013"><a href="javascript:void(0);" onClick="window.open('newreport_context.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&sid=54715408&n=37&svr=55&session-id=1b08e9dae4c0c94db58986254207d375', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#cc6600" class="#cc6600">determine which product backlog</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> story <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 18 in source list: "Digital Enterprise Design and Management 2013", Springer Nature, 2013"><a href="javascript:void(0);" onClick="window.open('newreport_context.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&sid=54715408&n=37&svr=55&session-id=1b08e9dae4c0c94db58986254207d375', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#cc6600" class="#cc6600">will be</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> delivered <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 18 in source list: "Digital Enterprise Design and Management 2013", Springer Nature, 2013"><a href="javascript:void(0);" onClick="window.open('newreport_context.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&sid=54715408&n=37&svr=55&session-id=1b08e9dae4c0c94db58986254207d375', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#cc6600" class="#cc6600">in</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> that <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 18 in source list: "Digital Enterprise Design and Management 2013", Springer Nature, 2013"><a href="javascript:void(0);" onClick="window.open('newreport_context.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&sid=54715408&n=37&svr=55&session-id=1b08e9dae4c0c94db58986254207d375', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#cc6600" class="#cc6600">sprint.</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> We conducted sprint planning every Monday when the sprint ended or after the sprint reviews and retrospectives from the previous sprint. Scrum master facilitated to make sure the discussion is effective and appropriate <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 24 in source list: Submitted to University of Maryland, University College on 2006-11-26"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:35860166&perc=0', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:blue" class="blue">product backlog items</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> are included <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 24 in source list: Submitted to University of Maryland, University College on 2006-11-26"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:35860166&perc=0', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:blue" class="blue">in the sprint</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> backlog. <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 1 in source list: Submitted to Harrisburg University of Science and Technology on 2017-02-25"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:775926337&perc=4', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:red" class="red">The Daily Stand-up</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> meeting It <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 1 in source list: Submitted to Harrisburg University of Science and Technology on 2017-02-25"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:775926337&perc=4', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:red" class="red">is a short meeting</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> for communication between members not more than 15 minutes where every member covers the development since last meeting. Planning work and impediments are discussed that may be blocking the development of a member in daily stand-up meeting (Cohn 2009: 72.). Most of our stand up lasted only for about 15-20 minutes and done in exact time of 10 AM everyday. The sprint review: It is the event to demonstrate and present the work of the team done <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 1 in source list: Submitted to Harrisburg University of Science and Technology on 2017-02-25"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:775926337&perc=4', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:red" class="red">during the sprint. Product owner checks</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> if <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 1 in source list: Submitted to Harrisburg University of Science and Technology on 2017-02-25"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:775926337&perc=4', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:red" class="red">the work</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> done meets the <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 1 in source list: Submitted to Harrisburg University of Science and Technology on 2017-02-25"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:775926337&perc=4', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:red" class="red">acceptance criteria and either</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> accept it <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 1 in source list: Submitted to Harrisburg University of Science and Technology on 2017-02-25"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:775926337&perc=4', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:red" class="red">or</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> reject it. <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 1 in source list: Submitted to Harrisburg University of Science and Technology on 2017-02-25"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:775926337&perc=4', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:red" class="red">The</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> stakeholders reviews <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 1 in source list: Submitted to Harrisburg University of Science and Technology on 2017-02-25"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:775926337&perc=4', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:red" class="red">the</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> work and <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 1 in source list: Submitted to Harrisburg University of Science and Technology on 2017-02-25"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:775926337&perc=4', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:red" class="red">give feedback to ensure the</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> development meets <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 1 in source list: Submitted to Harrisburg University of Science and Technology on 2017-02-25"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:775926337&perc=4', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:red" class="red">the</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> requirements. <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 1 in source list: Submitted to Harrisburg University of Science and Technology on 2017-02-25"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:775926337&perc=4', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:red" class="red">The</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> sprint review was done at the end of the sprint every monday and reviewed by our teacher. The retrospective It is the final meeting at the end of every sprint to discuss and find <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 1 in source list: Submitted to Harrisburg University of Science and Technology on 2017-02-25"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:775926337&perc=4', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:red" class="red">what went well</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> and <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 1 in source list: Submitted to Harrisburg University of Science and Technology on 2017-02-25"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:775926337&perc=4', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:red" class="red">didn’t go well</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> or <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 1 in source list: Submitted to Harrisburg University of Science and Technology on 2017-02-25"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:775926337&perc=4', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:red" class="red">how</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> it <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 1 in source list: Submitted to Harrisburg University of Science and Technology on 2017-02-25"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:775926337&perc=4', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:red" class="red">can</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> be improved <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 1 in source list: Submitted to Harrisburg University of Science and Technology on 2017-02-25"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:775926337&perc=4', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:red" class="red">in</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> another <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 1 in source list: Submitted to Harrisburg University of Science and Technology on 2017-02-25"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:775926337&perc=4', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:red" class="red">sprint.</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> It was held after the sprint review. We were supposed to identify elements of the process that did or did not work during a sprint. We facilitated this meeting by asking the following questions (Derby and Larsen 2006: 129). ● What went well? ● What would we like to change ? ● How can we improve change? Scrum Artifacts Product Backlog It is a document or list that outlines everything that is needed in the product to complete or it can also be explained as requirements for the product (Schwaber 2007: 58). Backlog is managed accordingly <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 1 in source list: Submitted to Harrisburg University of Science and Technology on 2017-02-25"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:775926337&perc=4', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:red" class="red">in terms of</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> their <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 1 in source list: Submitted to Harrisburg University of Science and Technology on 2017-02-25"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:775926337&perc=4', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:red" class="red">value</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> proposition <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 1 in source list: Submitted to Harrisburg University of Science and Technology on 2017-02-25"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:775926337&perc=4', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:red" class="red">by the product owner.</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> While creating product <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 1 in source list: Submitted to Harrisburg University of Science and Technology on 2017-02-25"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:775926337&perc=4', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:red" class="red">backlog</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> we focused on two foundations which is road map and requirements. Roadmap initiatives got breakdown into several epics with each epic having several user stories and requirements. All working items like user stories, customer requests, design changes were included in the product backlog Sprint Backlog <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 12 in source list: Submitted to (school name not available) on 2006-09-19"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:29814732&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#006331" class="#006331">It is a</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> specific <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 12 in source list: Submitted to (school name not available) on 2006-09-19"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:29814732&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#006331" class="#006331">list of product backlog items</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> which are <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 12 in source list: Submitted to (school name not available) on 2006-09-19"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:29814732&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#006331" class="#006331">to be</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> finished <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 12 in source list: Submitted to (school name not available) on 2006-09-19"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:29814732&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#006331" class="#006331">in</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> that certain <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 12 in source list: Submitted to (school name not available) on 2006-09-19"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:29814732&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#006331" class="#006331">sprint.</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> During <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 12 in source list: Submitted to (school name not available) on 2006-09-19"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:1:29814732&perc=1', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:#006331" class="#006331">the</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> sprint planning meeting we selected some <img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" height="1" width="1" alt="Begin Match to source 23 in source list: Submitted to Staffordshire University on 2016-02-11"><a href="javascript:void(0);" onClick="window.open('/paperInfo.asp?r=0.452610241837448&svr=43&session-id=1b08e9dae4c0c94db58986254207d375&lang=en_us&oid=oid:2:52892519&perc=0', 'context', 'location=no,menubar=no,resizable=yes,scrollbars=yes,titlebar=no,toolbar=no,status=no')" style="color:green" class="green">number of product backlog items in</a><img src="/r/build/images/new_dynamic/df3e567d6f16d040326c7a0ea29a4f41cb_spacer.gif" alt="End Match"> order to identify necessary task to be accomplished. We maintained sprint backlog in spreadsheet as shown below Figure 9: Sprint backlog with burndown chart References Arnold, J., Randall, R., and Patterson, F. (2010) Work Psychology: Understanding Human Behaviour in the Workplace. 5. ed. Harlow: Financial Times Prentice Hall Cohn, M. (2009) Succeeding with Agile: Software Development Using Scrum. Boston, MA: Pearson Education, Inc Coon, D. (2017) Introduction to Psychology: Gateways to Mind and Behavior. 15th edition. Boston, MA: Cengage Learning Deci, E.L. and Ryan, R.M. (2008) ‘Self-Determination Theory: A Macrotheory of Human Motivation, Development, and Health’. Canadian Psychology/Psychologie Canadienne 49 (3), 182–185 Derby, E. and Larsen, D. (2006) Agile Retrospectives: Making Good Teams Great. Raleigh, NC: Pragmatic Bookshelf Goodpasture, J.C. (2010) Project Management The Agile Way: Making It Work In The Enterprise. Ft. Lauderdale, FL: J. Ross Pub Grigaliunas, B.S. and Herzberg, F. (1971) ‘Relevancy in the Test of Motivator-Hygiene Theory’. Journal of Applied Psychology 55 (1), 73–79 Locke, E.A., Shaw, K.N., Saari, L.M., and Latham, G.P. (1981) ‘Goal Setting and Task Performance: 1969–1980’. Psychological Bulletin 90 (1), 125–152 Qumer, A. and Henderson-Sellers, B. (2008) ‘An Evaluation of the Degree of Agility in Six Agile Methods and Its Applicability for Method Engineering’. Information and Software Technology 50 (4), 280–295 Rubin, K.S. (2012) Essential Scrum: A Practical Guide to the Most Popular Agile Process. Upper Saddle River, NJ: Addison-Wesley Schwaber, K. (2007) Agile Software Development with Scrum (Series in Agile Software Development). Boston, MA: Pearson Education, Inc </p>
+</div>
+</body>
+</html>
